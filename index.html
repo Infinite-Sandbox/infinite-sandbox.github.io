@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#c9c9c9">
     <title>Infinite Sandbox</title>
+
     <link rel="icon" href="Icon.PNG">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,12 +14,16 @@
 
     <style>
         :root {
-            --room: #D1D1D1;
-            --grid: #C1C1C1;
-            --blue: #3478F6;
-            --blue-dark: #2058C2;
-            --dark: #30343B;
-            --muted: #626872;
+            --room: #cecece;
+            --grid: #bdbdbd;
+            --dark: #30343b;
+            --muted: #646a73;
+            --blue: #3478f6;
+            --panel: #e5e5e5;
+            --panel-dark: #b8b8b8;
+
+            --button-image: url("https://raw.githubusercontent.com/Infinite-Sandbox/infinite-sandbox.github.io/main/UIButton.PNG");
+            --slice: 6;
         }
 
         * {
@@ -28,30 +34,27 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 90px;
+            scroll-padding-top: 100px;
         }
 
         body {
             font-family: "Pixelify Sans", monospace;
             color: var(--dark);
             background: var(--room);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* ONE GRID FOR THE ENTIRE PAGE */
         body::before {
             content: "";
             position: fixed;
             inset: 0;
             z-index: -1;
             pointer-events: none;
-            background-color: var(--room);
             background-image:
                 linear-gradient(to right, var(--grid) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
             background-size: 24px 24px;
-            background-position: 0 0;
         }
 
         a {
@@ -63,226 +66,276 @@
             max-width: 100%;
         }
 
+        /* BUTTON / PANEL TEXTURE */
+
+        .pixel-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            min-height: 48px;
+            padding: 10px 22px;
+
+            border: 12px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 6px;
+            border-image-repeat: stretch;
+
+            background: transparent;
+            color: white;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+
+            transition: transform .14s, filter .14s;
+        }
+
+        .pixel-button:hover {
+            filter: brightness(1.18);
+            transform: translateY(-2px);
+        }
+
+        .pixel-button:active {
+            transform: translateY(1px);
+            filter: brightness(.95);
+        }
+
+        .pixel-button.secondary {
+            filter: brightness(.68);
+        }
+
+        .pixel-button.secondary:hover {
+            filter: brightness(.85);
+        }
+
+        .pixel-button.small {
+            min-height: 39px;
+            padding: 6px 15px;
+            font-size: 15px;
+        }
+
+        /* REUSABLE PIXEL PANEL */
+
+        .pixel-panel {
+            border: 12px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 6px;
+            border-image-repeat: stretch;
+            background: transparent;
+        }
+
         /* HEADER */
 
         .header {
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 100;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            padding: 14px 7%;
-            background: rgba(209, 209, 209, 0.96);
+            gap: 20px;
+
+            padding: 12px 6%;
+
+            background: rgba(196, 196, 196, .96);
+            border-bottom: 2px solid rgba(48, 52, 59, .22);
+            box-shadow: 0 4px 0 rgba(48, 52, 59, .08);
             backdrop-filter: blur(8px);
-            box-shadow: 0 1px 0 rgba(48, 52, 59, 0.12);
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 11px;
             text-decoration: none;
-            font-size: 21px;
+            white-space: nowrap;
+            font-size: 22px;
             font-weight: 700;
         }
 
         .brand img {
-            width: 36px;
-            height: 36px;
+            width: 39px;
+            height: 39px;
             object-fit: contain;
+            image-rendering: pixelated;
         }
 
         .nav {
             display: flex;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 5px;
         }
 
         .nav a {
-            padding: 7px 10px;
+            padding: 8px 13px;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border: 8px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 4px;
+            border-image-repeat: stretch;
+            transition: filter .15s, transform .15s;
         }
 
-        .nav a:hover {
-            color: var(--blue-dark);
+        .nav a:hover,
+        .nav a.active {
+            color: white;
+            filter: brightness(1.05);
+            transform: translateY(-1px);
         }
-
-        
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    min-height: 46px;
-    padding: 10px 22px;
-
-    border: 11px solid transparent;
-
-    /* Unity-style 9-slicing */
-    border-image-source: url("https://raw.githubusercontent.com/Infinite-Sandbox/infinite-sandbox.github.io/main/UIButton.PNG");
-    border-image-slice: 1 fill;
-    border-image-width: 5.5px;
-    border-image-repeat: stretch;
-
-    background: transparent;
-    color: white !important;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-
-    transition: transform 0.15s, filter 0.15s;
-}
-
-.btn:hover {
-    filter: brightness(1.15);
-    transform: translateY(-2px);
-}
-
-.btn:active {
-    transform: translateY(2px);
-}
-
-.btn.dark {
-    filter: brightness(0.65);
-}
-
-.btn.dark:hover {
-    filter: brightness(0.8);
-}
-
-
 
         /* HERO */
 
         .hero {
-            min-height: 600px;
-            padding: 70px 7% 85px;
+            min-height: 640px;
+            padding: 75px 6% 85px;
+
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: transparent;
         }
 
         .hero-logo {
-            width: min(760px, 90%);
-            max-height: 300px;
+            width: min(720px, 90%);
+            max-height: 280px;
             object-fit: contain;
-            margin-bottom: 24px;
-            filter: drop-shadow(0 5px 0 rgba(0, 0, 0, 0.08));
+            margin-bottom: 30px;
+            filter: drop-shadow(0 6px 0 rgba(0,0,0,.1));
         }
 
         .tag {
             display: inline-block;
             margin-bottom: 18px;
-            padding: 5px 13px;
-            background: #FFFFFF;
-            border: 1px solid #AEB4BE;
-            border-radius: 3px;
-            font-size: 14px;
+            padding: 8px 17px;
+
+            border: 10px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 5px;
+            border-image-repeat: stretch;
+
+            font-size: 15px;
             font-weight: 700;
+            color: white;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .hero h1 {
             max-width: 900px;
-            margin-bottom: 16px;
-            font-size: clamp(38px, 6vw, 68px);
-            line-height: 1.08;
+            margin-bottom: 18px;
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1.05;
+            font-weight: 700;
+            text-shadow: 0 3px 0 rgba(255,255,255,.35);
         }
 
         .hero p {
-            max-width: 650px;
-            margin-bottom: 25px;
-            color: #454B55;
-            font-size: clamp(16px, 2vw, 20px);
+            max-width: 640px;
+            margin-bottom: 28px;
+            color: #484e57;
+            font-size: clamp(17px, 2vw, 21px);
         }
 
         .button-row {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 14px;
+            gap: 13px;
         }
 
         .hero .small-note {
-            margin-top: 26px;
-            margin-bottom: 0;
-            font-size: 14px;
+            margin: 27px 0 0;
+            font-size: 15px;
+            color: #555b64;
         }
 
-        /* SECTIONS: TRANSPARENT, WITH NO GRID OR SEAM BORDERS */
+        /* GENERAL SECTIONS */
 
         .section {
-            padding: 82px 7%;
-            background: transparent !important;
-            border: none !important;
+            padding: 85px 6%;
         }
 
         .section-heading {
-            max-width: 720px;
-            margin: 0 auto 38px;
+            max-width: 750px;
+            margin: 0 auto 45px;
             text-align: center;
         }
 
         .eyebrow {
-            color: var(--blue-dark);
+            display: inline-block;
+            padding: 5px 13px;
+            margin-bottom: 9px;
+
+            border: 8px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 4px;
+            border-image-repeat: stretch;
+
+            color: white;
             font-size: 14px;
             font-weight: 700;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         .section-heading h2,
         .community h2 {
-            margin: 12px 0;
-            font-size: clamp(30px, 4vw, 45px);
-            line-height: 1.15;
+            margin: 9px 0 12px;
+            font-size: clamp(32px, 4vw, 47px);
+            line-height: 1.1;
         }
 
         .section-heading p {
             color: var(--muted);
-            font-size: 16px;
+            font-size: 17px;
         }
 
         /* ABOUT */
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.1fr;
             align-items: center;
-            gap: 40px;
+            gap: 45px;
             max-width: 1150px;
             margin: 0 auto;
         }
 
         .about-text h3 {
-            margin-bottom: 15px;
-            font-size: 27px;
+            margin-bottom: 17px;
+            font-size: 30px;
         }
 
         .about-text p {
-            margin-bottom: 15px;
-            color: #454B55;
-            font-size: 17px;
+            margin-bottom: 16px;
+            color: #454b55;
+            font-size: 18px;
+        }
+
+        .about-text .pixel-button {
+            margin-top: 8px;
         }
 
         .image-frame {
             overflow: hidden;
-            background: #FFFFFF;
-            border: 2px solid #AEB4BE;
-            border-radius: 5px;
-            box-shadow: 0 5px 0 rgba(48, 52, 59, 0.12);
+            padding: 8px;
+            background: #a7a7a7;
+            border: 2px solid #777d86;
+            box-shadow: 0 6px 0 rgba(48,52,59,.15);
         }
 
         .image-frame img {
@@ -295,43 +348,51 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 22px;
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .feature-card {
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.94);
-            border: 2px solid #B6BBC4;
-            border-radius: 5px;
-            box-shadow: 0 5px 0 rgba(48, 52, 59, 0.1);
-            transition: transform 0.18s;
+            min-width: 0;
+            padding: 9px;
+
+            border: 11px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 6px;
+            border-image-repeat: stretch;
+
+            background: transparent;
+            transition: transform .18s, filter .18s;
         }
 
         .feature-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-5px);
+            filter: brightness(1.05);
         }
 
         .feature-card img {
             width: 100%;
             aspect-ratio: 16 / 10;
             object-fit: cover;
-            background: #E4E4E4;
+            background: #bcbcbc;
+            border: 2px solid rgba(48,52,59,.35);
         }
 
         .feature-content {
-            padding: 20px;
+            padding: 15px 9px 9px;
         }
 
         .feature-content h3 {
-            margin-bottom: 9px;
+            margin-bottom: 8px;
             font-size: 22px;
+            line-height: 1.2;
         }
 
         .feature-content p {
-            color: var(--muted);
-            font-size: 15px;
+            color: #4e545d;
+            font-size: 16px;
         }
 
         /* SCREENSHOTS */
@@ -339,28 +400,38 @@
         .screenshots-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
+            gap: 27px;
             max-width: 1100px;
             margin: 0 auto;
         }
 
         .screenshot {
-            overflow: hidden;
-            background: #FFFFFF;
-            border: 2px solid #AEB4BE;
-            border-radius: 5px;
-            box-shadow: 0 5px 0 rgba(48, 52, 59, 0.12);
+            padding: 9px;
+
+            border: 11px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 6px;
+            border-image-repeat: stretch;
+
+            background: transparent;
+            transition: transform .18s;
+        }
+
+        .screenshot:hover {
+            transform: translateY(-4px);
         }
 
         .screenshot img {
             width: 100%;
             aspect-ratio: 16 / 9;
             object-fit: cover;
+            border: 2px solid rgba(48,52,59,.35);
         }
 
         .screenshot figcaption {
-            padding: 12px 15px;
-            font-size: 17px;
+            padding: 12px 7px 5px;
+            font-size: 19px;
             font-weight: 700;
         }
 
@@ -370,46 +441,62 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 12px;
-            background: rgba(255, 255, 255, 0.94);
-            border: 2px solid #AEB4BE;
-            border-radius: 5px;
+
+            border: 12px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 6px;
+            border-image-repeat: stretch;
         }
 
         .trailer-placeholder {
             display: flex;
-            min-height: 240px;
+            min-height: 280px;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 15px;
+            gap: 16px;
             padding: 30px;
-            background: #343A44;
-            color: #FFFFFF;
+
+            background: #343a44;
+            color: white;
             text-align: center;
+            border: 2px solid rgba(0,0,0,.25);
+        }
+
+        .trailer-placeholder h3 {
+            font-size: 29px;
         }
 
         .trailer-placeholder p {
-            color: #E1E5EC;
+            color: #e1e5ec;
+            font-size: 17px;
         }
 
         /* COMMUNITY */
 
         .community {
-            padding: 80px 7%;
-            background: transparent !important;
-            border: none !important;
+            padding: 85px 6%;
             text-align: center;
         }
 
         .community-inner {
             max-width: 760px;
             margin: 0 auto;
+            padding: 35px 25px;
+
+            border: 12px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 6 fill;
+            border-image-width: 6px;
+            border-image-repeat: stretch;
         }
 
         .community p {
-            margin-bottom: 25px;
-            color: #454B55;
-            font-size: 17px;
+            max-width: 570px;
+            margin: 12px auto 25px;
+            color: #454b55;
+            font-size: 18px;
         }
 
         /* FOOTER */
@@ -419,35 +506,57 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 15px;
-            padding: 24px 7%;
-            background: #343A44;
-            color: #FFFFFF;
+            gap: 18px;
+            padding: 25px 6%;
+
+            background: #343a44;
+            color: white;
+            border-top: 4px solid #252a31;
+            box-shadow: 0 -4px 0 rgba(48,52,59,.08);
+        }
+
+        .footer p {
+            font-size: 16px;
         }
 
         .footer-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 18px;
+            gap: 20px;
         }
 
         .footer a {
-            color: #FFFFFF;
+            color: white;
             text-decoration: none;
+            font-size: 16px;
         }
 
         .footer a:hover {
-            color: #8CB5FF;
+            color: #8cb5ff;
         }
 
-        @media (max-width: 900px) {
+        /* ACCESSIBILITY */
+
+        a:focus-visible {
+            outline: 3px dashed var(--blue);
+            outline-offset: 5px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 950px) {
             .header {
-                align-items: flex-start;
                 flex-direction: column;
+                gap: 10px;
             }
 
             .about-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .about-grid .image-frame {
+                max-width: 750px;
+                margin: 0 auto;
             }
 
             .features-grid {
@@ -457,30 +566,39 @@
 
         @media (max-width: 600px) {
             .header {
-                padding: 12px 5%;
+                padding: 12px 4%;
+            }
+
+            .brand {
+                font-size: 19px;
             }
 
             .nav {
+                justify-content: center;
                 gap: 3px;
             }
 
             .nav a {
-                padding: 6px 7px;
-                font-size: 13px;
+                padding: 6px 9px;
+                font-size: 14px;
             }
 
             .hero {
-                min-height: 500px;
-                padding: 50px 5%;
+                min-height: 520px;
+                padding: 55px 5%;
             }
 
             .hero-logo {
                 width: 100%;
             }
 
+            .hero h1 {
+                font-size: 42px;
+            }
+
             .section,
             .community {
-                padding: 58px 5%;
+                padding: 60px 5%;
             }
 
             .features-grid,
@@ -492,229 +610,328 @@
                 width: 100%;
             }
 
-            .button-row .btn {
-                flex: 1 1 140px;
+            .button-row .pixel-button {
+                flex: 1 1 145px;
+            }
+
+            .community-inner {
+                padding: 25px 13px;
             }
 
             .footer {
-                align-items: flex-start;
+                align-items: center;
                 flex-direction: column;
-                padding: 22px 5%;
+                text-align: center;
+                padding: 25px 5%;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
             }
         }
     </style>
 </head>
 
 <body>
-    <header class="header">
-        <a class="brand" href="#home">
-            <img src="Icon.PNG" alt="Infinite Sandbox icon">
-            <span>INFINITE SANDBOX</span>
-        </a>
 
-        <nav class="nav" aria-label="Main navigation">
-            <a href="#about">About</a>
-            <a href="#features">Features</a>
-            <a href="#screenshots">Screenshots</a>
-            <a href="#trailer">Trailer</a>
-            <a href="#community">Community</a>
-        </nav>
-    </header>
+<header class="header">
+    <a class="brand" href="#home">
+        <img src="Icon.PNG" alt="">
+        <span>INFINITE SANDBOX</span>
+    </a>
 
-    <main>
-        <section class="hero" id="home">
-            <img class="hero-logo" src="TitleLogo.png" alt="Infinite Sandbox">
+    <nav class="nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#trailer">Trailer</a>
+        <a href="#community">Community</a>
+    </nav>
+</header>
 
-            <span class="tag">Your world. Your rules.</span>
+<main>
 
-            <h1>Create something.<br>Destroy something.</h1>
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+        <img class="hero-logo" src="TitleLogo.png" alt="Infinite Sandbox">
+
+        <span class="tag">Your world. Your rules.</span>
+
+        <h1>Create something.<br>Destroy something.</h1>
+
+        <p>
+            Experiment with physics, spawn characters, use weapons,
+            and see what happens in your own sandbox.
+        </p>
+
+        <div class="button-row">
+            <a class="pixel-button" href="download.html?platform=windows">
+                Download for Windows
+            </a>
+
+            <a class="pixel-button secondary" href="download.html?platform=mac">
+                Download for Mac
+            </a>
+        </div>
+
+        <p class="small-note">CREATE. EXPERIMENT. DESTROY.</p>
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="section" id="about">
+        <div class="section-heading">
+            <span class="eyebrow">About the game</span>
+            <h2>Welcome to the sandbox</h2>
+            <p>A physics sandbox where experimentation is the point.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Nothing is set in stone.</h3>
+
+                <p>
+                    Infinite Sandbox lets you spawn characters and objects,
+                    experiment with physics, and create your own situations.
+                </p>
+
+                <p>
+                    Try different weapons, test explosions, explore levels,
+                    and discover what happens when everything interacts.
+                </p>
+
+                <p>
+                    There is no single way to play. Set up an experiment,
+                    build something, or just see what happens.
+                </p>
+
+                <a class="pixel-button" href="#screenshots">
+                    Explore the game
+                </a>
+            </div>
+
+            <div class="image-frame">
+                <img src="MainMenu.png" alt="Infinite Sandbox main menu" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="section" id="features">
+        <div class="section-heading">
+            <span class="eyebrow">Game features</span>
+            <h2>Make your own experiments</h2>
+            <p>Tools and systems to help you create, test, and explore.</p>
+        </div>
+
+        <div class="features-grid">
+
+            <article class="feature-card">
+                <img src="LotsOfLevels.png" alt="Different levels" loading="lazy">
+                <div class="feature-content">
+                    <h3>Explore different levels</h3>
+                    <p>Choose an environment and create your own experiments.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <img src="RealisticExplosions.png" alt="Explosion effects" loading="lazy">
+                <div class="feature-content">
+                    <h3>Physics and explosions</h3>
+                    <p>Experiment with explosive forces and physical interactions.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <img src="Weapons.png" alt="Weapons in the game" loading="lazy">
+                <div class="feature-content">
+                    <h3>Weapons and tools</h3>
+                    <p>Spawn different items and experiment with the world.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <img src="Syringes.png" alt="Syringes in the game" loading="lazy">
+                <div class="feature-content">
+                    <h3>Syringes and powers</h3>
+                    <p>Try different effects and discover how they change characters.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <img src="Zombie.png" alt="Zombie content" loading="lazy">
+                <div class="feature-content">
+                    <h3>Unexpected outcomes</h3>
+                    <p>Combine characters, objects, and effects to create surprises.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <img src="MainMenu.png" alt="Infinite Sandbox interface" loading="lazy">
+                <div class="feature-content">
+                    <h3>Your sandbox</h3>
+                    <p>Set up your own scenarios and play your own way.</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- SCREENSHOTS -->
+
+    <section class="section" id="screenshots">
+        <div class="section-heading">
+            <span class="eyebrow">Screenshots</span>
+            <h2>Take a look inside</h2>
+            <p>A closer look at Infinite Sandbox.</p>
+        </div>
+
+        <div class="screenshots-grid">
+
+            <figure class="screenshot">
+                <img src="MainMenu.png" alt="Main menu" loading="lazy">
+                <figcaption>Main menu</figcaption>
+            </figure>
+
+            <figure class="screenshot">
+                <img src="LotsOfLevels.png" alt="Different levels" loading="lazy">
+                <figcaption>Different levels</figcaption>
+            </figure>
+
+            <figure class="screenshot">
+                <img src="RealisticExplosions.png" alt="Explosions" loading="lazy">
+                <figcaption>Explosions</figcaption>
+            </figure>
+
+            <figure class="screenshot">
+                <img src="Weapons.png" alt="Weapons" loading="lazy">
+                <figcaption>Weapons</figcaption>
+            </figure>
+
+            <figure class="screenshot">
+                <img src="Syringes.png" alt="Syringes" loading="lazy">
+                <figcaption>Syringes</figcaption>
+            </figure>
+
+            <figure class="screenshot">
+                <img src="Zombie.png" alt="Zombie content" loading="lazy">
+                <figcaption>Zombie content</figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+    <!-- TRAILER -->
+
+    <section class="section" id="trailer">
+        <div class="section-heading">
+            <span class="eyebrow">Watch the game</span>
+            <h2>See it in action</h2>
+            <p>Watch gameplay and updates on the Infinite Sandbox channel.</p>
+        </div>
+
+        <div class="trailer-wrap">
+            <div class="trailer-placeholder">
+                <h3>Infinite Sandbox videos</h3>
+                <p>Check out the channel for gameplay and updates.</p>
+
+                <a class="pixel-button"
+                   href="https://www.youtube.com/@Infinite.Sandbox"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Visit YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY -->
+
+    <section class="community" id="community">
+        <div class="community-inner">
+            <span class="eyebrow">Join the community</span>
+
+            <h2>Stay in the loop</h2>
 
             <p>
-                Experiment with physics, spawn characters, use weapons,
-                and see what happens in your own sandbox.
+                Follow Infinite Sandbox for gameplay, development updates,
+                and new content.
             </p>
 
             <div class="button-row">
-                <a class="btn" href="download.html?platform=windows">Download for Windows</a>
-                <a class="btn dark" href="download.html?platform=mac">Download for Mac</a>
+                <a class="pixel-button"
+                   href="https://www.youtube.com/@Infinite.Sandbox"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    YouTube
+                </a>
+
+                <a class="pixel-button secondary"
+                   href="https://www.tiktok.com/@infinite_sandbox"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    TikTok
+                </a>
             </div>
-
-            <p class="small-note">Build it. Break it. Experiment.</p>
-        </section>
-
-        <section class="section" id="about">
-            <div class="section-heading">
-                <span class="eyebrow">About the game</span>
-                <h2>Welcome to the sandbox</h2>
-                <p>A physics sandbox where experimentation is the point.</p>
-            </div>
-
-            <div class="about-grid">
-                <div class="about-text">
-                    <h3>Nothing is set in stone.</h3>
-                    <p>
-                        Infinite Sandbox lets you spawn characters and objects,
-                        experiment with physics, and create your own situations.
-                    </p>
-                    <p>
-                        Try different weapons, test explosions, explore levels,
-                        and discover what happens when everything interacts.
-                    </p>
-                    <p>
-                        There is no single way to play. Set up an experiment,
-                        build something, or just see what happens.
-                    </p>
-                    <a class="btn" href="#screenshots">See the game</a>
-                </div>
-
-                <div class="image-frame">
-                    <img src="MainMenu.png" alt="Infinite Sandbox main menu" loading="lazy">
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="features">
-            <div class="section-heading">
-                <span class="eyebrow">Game features</span>
-                <h2>Make your own experiments</h2>
-                <p>Tools and systems to help you create, test, and explore.</p>
-            </div>
-
-            <div class="features-grid">
-                <article class="feature-card">
-                    <img src="LotsOfLevels.png" alt="Different levels" loading="lazy">
-                    <div class="feature-content">
-                        <h3>Explore different levels</h3>
-                        <p>Choose an environment and create your own experiments.</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <img src="RealisticExplosions.png" alt="Explosion effects" loading="lazy">
-                    <div class="feature-content">
-                        <h3>Physics and explosions</h3>
-                        <p>Experiment with explosive forces and physical interactions.</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <img src="Weapons.png" alt="Weapons in the game" loading="lazy">
-                    <div class="feature-content">
-                        <h3>Weapons and tools</h3>
-                        <p>Spawn different items and experiment with the world.</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <img src="Syringes.png" alt="Syringes in the game" loading="lazy">
-                    <div class="feature-content">
-                        <h3>Syringes and powers</h3>
-                        <p>Try different effects and discover how they change characters.</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <img src="Zombie.png" alt="Zombie content" loading="lazy">
-                    <div class="feature-content">
-                        <h3>Unexpected outcomes</h3>
-                        <p>Combine characters, objects, and effects to create surprises.</p>
-                    </div>
-                </article>
-
-                <article class="feature-card">
-                    <img src="MainMenu.png" alt="Infinite Sandbox interface" loading="lazy">
-                    <div class="feature-content">
-                        <h3>Your sandbox</h3>
-                        <p>Set up your own scenarios and play your own way.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="section" id="screenshots">
-            <div class="section-heading">
-                <span class="eyebrow">Screenshots</span>
-                <h2>Take a look inside</h2>
-                <p>A closer look at Infinite Sandbox.</p>
-            </div>
-
-            <div class="screenshots-grid">
-                <figure class="screenshot">
-                    <img src="MainMenu.png" alt="Main menu" loading="lazy">
-                    <figcaption>Main menu</figcaption>
-                </figure>
-                <figure class="screenshot">
-                    <img src="LotsOfLevels.png" alt="Different levels" loading="lazy">
-                    <figcaption>Different levels</figcaption>
-                </figure>
-                <figure class="screenshot">
-                    <img src="RealisticExplosions.png" alt="Explosions" loading="lazy">
-                    <figcaption>Explosions</figcaption>
-                </figure>
-                <figure class="screenshot">
-                    <img src="Weapons.png" alt="Weapons" loading="lazy">
-                    <figcaption>Weapons</figcaption>
-                </figure>
-                <figure class="screenshot">
-                    <img src="Syringes.png" alt="Syringes" loading="lazy">
-                    <figcaption>Syringes</figcaption>
-                </figure>
-                <figure class="screenshot">
-                    <img src="Zombie.png" alt="Zombie content" loading="lazy">
-                    <figcaption>Zombie content</figcaption>
-                </figure>
-            </div>
-        </section>
-
-        <section class="section" id="trailer">
-            <div class="section-heading">
-                <span class="eyebrow">Watch the game</span>
-                <h2>See it in action</h2>
-                <p>Watch gameplay and updates on the Infinite Sandbox channel.</p>
-            </div>
-
-            <div class="trailer-wrap">
-                <div class="trailer-placeholder">
-                    <h3>Infinite Sandbox videos</h3>
-                    <p>Check out the channel for gameplay and updates.</p>
-                    <a class="btn" href="https://www.youtube.com/@Infinite.Sandbox"
-                       target="_blank" rel="noopener noreferrer">Visit YouTube</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="community" id="community">
-            <div class="community-inner">
-                <span class="eyebrow">Join the community</span>
-                <h2>Stay in the loop</h2>
-                <p>
-                    Follow Infinite Sandbox for gameplay, development updates,
-                    and new content.
-                </p>
-
-                <div class="button-row">
-                    <a class="btn" href="https://www.youtube.com/@Infinite.Sandbox"
-                       target="_blank" rel="noopener noreferrer">YouTube</a>
-                    <a class="btn dark" href="https://www.tiktok.com/@infinite_sandbox"
-                       target="_blank" rel="noopener noreferrer">TikTok</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>© <span id="year"></span> Infinite Sandbox</p>
-        <div class="footer-links">
-            <a href="#home">Back to top ↑</a>
-            <a href="https://www.youtube.com/@Infinite.Sandbox"
-               target="_blank" rel="noopener noreferrer">YouTube</a>
-            <a href="https://www.tiktok.com/@infinite_sandbox"
-               target="_blank" rel="noopener noreferrer">TikTok</a>
         </div>
-    </footer>
+    </section>
 
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+</main>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+    <p>© <span id="year"></span> Infinite Sandbox</p>
+
+    <div class="footer-links">
+        <a href="#home">Back to top ↑</a>
+
+        <a href="https://www.youtube.com/@Infinite.Sandbox"
+           target="_blank"
+           rel="noopener noreferrer">YouTube</a>
+
+        <a href="https://www.tiktok.com/@infinite_sandbox"
+           target="_blank"
+           rel="noopener noreferrer">TikTok</a>
+    </div>
+</footer>
+
+<script>
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+    // Highlight the current navigation section.
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = document.querySelectorAll(".nav a");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.toggle(
+                        "active",
+                        link.getAttribute("href") === "#" + entry.target.id
+                    );
+                });
+            }
+        });
+    }, {
+        rootMargin: "-30% 0px -60% 0px"
+    });
+
+    sections.forEach(section => observer.observe(section));
+</script>
+
 </body>
 </html>
