@@ -111,48 +111,57 @@
             color: var(--blue-dark);
         }
 
-        /* COLOURED BUTTONS — NO GREY TEXTURE IMAGE */
+        
+/* SLICED BUTTON TEXTURE */
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 46px;
-            padding: 10px 22px;
-            background: #3478F6 !important;
-            background-image: none !important;
-            border: 2px solid #2058C2;
-            border-radius: 4px;
-            box-shadow: 0 4px 0 #204A98;
-            color: #FFFFFF !important;
-            font-family: inherit;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.15s, transform 0.15s;
-        }
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-        .btn:hover {
-            background: #2563D9 !important;
-            transform: translateY(-2px);
-        }
+    min-height: 46px;
+    padding: 10px 22px;
 
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 #204A98;
-        }
+    /* 9-sliced button texture */
+    border: 11px solid transparent;
+    border-image-source: url("UIButton.PNG");
+    border-image-slice: 11 fill;
+    border-image-width: 11px;
+    border-image-repeat: stretch;
 
-        .btn.dark {
-            background: #454B55 !important;
-            border-color: #30343B;
-            box-shadow: 0 4px 0 #252930;
-        }
+    background: transparent;
+    background-color: transparent;
 
-        .btn.dark:hover {
-            background: #30343B !important;
-        }
+    color: #FFFFFF !important;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+
+    cursor: pointer;
+    transition: transform 0.15s, filter 0.15s;
+}
+
+.btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(2px);
+}
+
+/* DARK BUTTON VARIANT */
+
+.btn.dark {
+    filter: brightness(0.65);
+}
+
+.btn.dark:hover {
+    filter: brightness(0.8);
+}
+
 
         /* HERO */
 
