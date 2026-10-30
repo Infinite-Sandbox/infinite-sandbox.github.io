@@ -19,9 +19,6 @@
             --dark: #30343b;
             --muted: #646a73;
             --blue: #3478f6;
-            --panel: #e5e5e5;
-            --panel-dark: #b8b8b8;
-
             --button-image: url("https://raw.githubusercontent.com/Infinite-Sandbox/infinite-sandbox.github.io/main/UIButton.PNG");
         }
 
@@ -65,18 +62,17 @@
             max-width: 100%;
         }
 
-        /* NINE-SLICE TEXTURE */
+        /* NINE-SLICE BUTTONS */
 
         .pixel-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-
             min-height: 48px;
             padding: 10px 22px;
 
-            border: 6px solid transparent;
+            border: 12px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 12px;
@@ -90,7 +86,6 @@
             text-decoration: none;
             text-align: center;
             cursor: pointer;
-
             transition: transform .14s, filter .14s;
         }
 
@@ -124,14 +119,11 @@
             position: sticky;
             top: 0;
             z-index: 100;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-
             padding: 12px 6%;
-
             background: rgba(196, 196, 196, .96);
             border-bottom: 2px solid rgba(48, 52, 59, .22);
             box-shadow: 0 4px 0 rgba(48, 52, 59, .08);
@@ -167,13 +159,11 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
-
             border: 8px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 8px;
             border-image-repeat: stretch;
-
             transition: filter .15s, transform .15s;
         }
 
@@ -189,7 +179,6 @@
         .hero {
             min-height: 640px;
             padding: 75px 6% 85px;
-
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -209,13 +198,11 @@
             display: inline-block;
             margin-bottom: 18px;
             padding: 8px 17px;
-
             border: 10px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 10px;
             border-image-repeat: stretch;
-
             font-size: 15px;
             font-weight: 700;
             color: white;
@@ -268,13 +255,11 @@
             display: inline-block;
             padding: 5px 13px;
             margin-bottom: 9px;
-
             border: 8px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 8px;
             border-image-repeat: stretch;
-
             color: white;
             font-size: 14px;
             font-weight: 700;
@@ -346,13 +331,11 @@
         .feature-card {
             min-width: 0;
             padding: 9px;
-
             border: 11px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 11px;
             border-image-repeat: stretch;
-
             background: transparent;
             transition: transform .18s, filter .18s;
         }
@@ -397,13 +380,11 @@
 
         .screenshot {
             padding: 9px;
-
             border: 11px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 11px;
             border-image-repeat: stretch;
-
             background: transparent;
             transition: transform .18s;
         }
@@ -431,8 +412,7 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 12px;
-
-            border: 6px solid transparent;
+            border: 12px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 12px;
@@ -447,7 +427,6 @@
             flex-direction: column;
             gap: 16px;
             padding: 30px;
-
             background: #343a44;
             color: white;
             text-align: center;
@@ -474,8 +453,7 @@
             max-width: 760px;
             margin: 0 auto;
             padding: 35px 25px;
-
-            border: 6px solid transparent;
+            border: 12px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 12px;
@@ -498,7 +476,6 @@
             flex-wrap: wrap;
             gap: 18px;
             padding: 25px 6%;
-
             background: #343a44;
             color: white;
             border-top: 4px solid #252a31;
