@@ -23,7 +23,6 @@
             --panel-dark: #b8b8b8;
 
             --button-image: url("https://raw.githubusercontent.com/Infinite-Sandbox/infinite-sandbox.github.io/main/UIButton.PNG");
-            --slice: 6;
         }
 
         * {
@@ -66,7 +65,7 @@
             max-width: 100%;
         }
 
-        /* BUTTON / PANEL TEXTURE */
+        /* NINE-SLICE TEXTURE */
 
         .pixel-button {
             display: inline-flex;
@@ -79,8 +78,8 @@
 
             border: 12px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
+            border-image-slice: 1 fill;
+            border-image-width: 12px;
             border-image-repeat: stretch;
 
             background: transparent;
@@ -117,17 +116,6 @@
             min-height: 39px;
             padding: 6px 15px;
             font-size: 15px;
-        }
-
-        /* REUSABLE PIXEL PANEL */
-
-        .pixel-panel {
-            border: 12px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
-            border-image-repeat: stretch;
-            background: transparent;
         }
 
         /* HEADER */
@@ -179,11 +167,13 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
+
             border: 8px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 4px;
+            border-image-slice: 1 fill;
+            border-image-width: 8px;
             border-image-repeat: stretch;
+
             transition: filter .15s, transform .15s;
         }
 
@@ -222,8 +212,8 @@
 
             border: 10px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 5px;
+            border-image-slice: 1 fill;
+            border-image-width: 10px;
             border-image-repeat: stretch;
 
             font-size: 15px;
@@ -281,8 +271,8 @@
 
             border: 8px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 4px;
+            border-image-slice: 1 fill;
+            border-image-width: 8px;
             border-image-repeat: stretch;
 
             color: white;
@@ -359,8 +349,8 @@
 
             border: 11px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
+            border-image-slice: 1 fill;
+            border-image-width: 11px;
             border-image-repeat: stretch;
 
             background: transparent;
@@ -410,8 +400,8 @@
 
             border: 11px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
+            border-image-slice: 1 fill;
+            border-image-width: 11px;
             border-image-repeat: stretch;
 
             background: transparent;
@@ -444,8 +434,8 @@
 
             border: 12px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
+            border-image-slice: 1 fill;
+            border-image-width: 12px;
             border-image-repeat: stretch;
         }
 
@@ -487,8 +477,8 @@
 
             border: 12px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
+            border-image-slice: 1 fill;
+            border-image-width: 12px;
             border-image-repeat: stretch;
         }
 
@@ -660,8 +650,6 @@
 
 <main>
 
-    <!-- HERO -->
-
     <section class="hero" id="home">
         <img class="hero-logo" src="TitleLogo.png" alt="Infinite Sandbox">
 
@@ -686,8 +674,6 @@
 
         <p class="small-note">CREATE. EXPERIMENT. DESTROY.</p>
     </section>
-
-    <!-- ABOUT -->
 
     <section class="section" id="about">
         <div class="section-heading">
@@ -725,8 +711,6 @@
             </div>
         </div>
     </section>
-
-    <!-- FEATURES -->
 
     <section class="section" id="features">
         <div class="section-heading">
@@ -788,8 +772,6 @@
         </div>
     </section>
 
-    <!-- SCREENSHOTS -->
-
     <section class="section" id="screenshots">
         <div class="section-heading">
             <span class="eyebrow">Screenshots</span>
@@ -832,8 +814,6 @@
         </div>
     </section>
 
-    <!-- TRAILER -->
-
     <section class="section" id="trailer">
         <div class="section-heading">
             <span class="eyebrow">Watch the game</span>
@@ -855,8 +835,6 @@
             </div>
         </div>
     </section>
-
-    <!-- COMMUNITY -->
 
     <section class="community" id="community">
         <div class="community-inner">
@@ -889,8 +867,6 @@
 
 </main>
 
-<!-- FOOTER -->
-
 <footer class="footer">
     <p>© <span id="year"></span> Infinite Sandbox</p>
 
@@ -911,7 +887,6 @@
     document.getElementById("year").textContent =
         new Date().getFullYear();
 
-    // Highlight the current navigation section.
     const sections = document.querySelectorAll("main section[id]");
     const navLinks = document.querySelectorAll(".nav a");
 
