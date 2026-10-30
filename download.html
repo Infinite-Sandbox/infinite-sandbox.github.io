@@ -4,26 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#e8edf5">
+    <meta name="theme-color" content="#D1D1D1">
     <title>Download Infinite Sandbox</title>
 
+    <link rel="icon" href="Icon.PNG">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --blue: #3478f6;
-            --blue-dark: #245fd0;
-            --background: #e1e5eb;
-            --card: #ffffff;
-            --text: #202938;
-            --muted: #738096;
-            --border: #e1e7f0;
+            --room: #D1D1D1;
+            --grid: #C1C1C1;
+            --blue: #3478F6;
+            --blue-dark: #2058C2;
+            --dark: #30343B;
+            --muted: #626872;
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         html {
@@ -31,19 +33,20 @@
         }
 
         body {
-            position: relative;
-            isolation: isolate;
             min-height: 100vh;
-            margin: 0;
-            padding: 32px 18px;
+            padding: 35px 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
-            color: var(--text);
-            background: var(--background);
-            font-family: "Pixelify Sans", system-ui, sans-serif;
+
+            color: var(--dark);
+            background: var(--room);
+            font-family: "Pixelify Sans", monospace;
+            line-height: 1.6;
         }
+
+        /* SAME GRID AS MAIN WEBSITE */
 
         body::before {
             content: "";
@@ -51,80 +54,48 @@
             inset: 0;
             z-index: -1;
             pointer-events: none;
+
+            background-color: var(--room);
             background-image:
-                linear-gradient(to right, #c9d0dc 1px, transparent 1px),
-                linear-gradient(to bottom, #c9d0dc 1px, transparent 1px);
+                linear-gradient(to right, var(--grid) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
             background-size: 24px 24px;
-        }
-
-        .orb {
-            position: fixed;
-            z-index: -1;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.35;
-            pointer-events: none;
-        }
-
-        .orb-blue {
-            top: -100px;
-            left: -80px;
-            background: #6c9fff;
-        }
-
-        .orb-green {
-            right: -100px;
-            bottom: -100px;
-            background: #8ddfc6;
         }
 
         .page {
             width: 100%;
-            max-width: 520px;
+            max-width: 540px;
         }
 
+        /* TOP LABEL */
+
         .top-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
             margin-bottom: 20px;
-            color: #58677d;
-            font-family: system-ui, sans-serif;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
+            text-align: center;
+            color: var(--blue-dark);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        .top-label::before,
-        .top-label::after {
-            content: "";
-            width: 24px;
-            height: 2px;
-            background: var(--blue);
-            opacity: 0.7;
-        }
+        /* DOWNLOAD CARD */
 
         .download-card {
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.85);
-            border-radius: 24px;
-            background: var(--card);
-            box-shadow:
-                0 25px 70px rgba(41, 57, 82, 0.12),
-                0 3px 10px rgba(41, 57, 82, 0.04);
+            background: rgba(255, 255, 255, 0.94);
+            border: 2px solid #AEB4BE;
+            border-radius: 5px;
+            box-shadow: 0 5px 0 rgba(48, 52, 59, 0.12);
         }
 
         .card-strip {
-            height: 6px;
-            background: linear-gradient(90deg, #3478f6, #65a2ff, #6ed8ba);
+            height: 7px;
+            background: var(--blue);
         }
 
         .card-content {
-            padding: 35px 30px 28px;
+            padding: 35px 30px 30px;
             text-align: center;
         }
 
@@ -136,54 +107,54 @@
             margin: 0 auto 22px;
         }
 
+        /* STATUS */
+
         .status {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 12px;
-            border: 1px solid #d9e7ff;
-            border-radius: 100px;
-            color: #2866d6;
-            background: #f0f6ff;
-            font-family: system-ui, sans-serif;
-            font-size: 11px;
-            font-weight: 750;
-            letter-spacing: 0.5px;
+            gap: 9px;
+            padding: 6px 12px;
+
+            background: #EAF1FF;
+            border: 1px solid #B8CCF2;
+            border-radius: 3px;
+
+            color: var(--blue-dark);
+            font-size: 13px;
+            font-weight: 700;
             text-transform: uppercase;
         }
 
         .status-dot {
-            width: 7px;
-            height: 7px;
+            width: 8px;
+            height: 8px;
             flex-shrink: 0;
+            background: var(--blue);
             border-radius: 50%;
-            background: #3478f6;
-            box-shadow: 0 0 0 4px #dce9ff;
             animation: pulse 1.8s infinite;
         }
 
         @keyframes pulse {
             50% {
-                box-shadow: 0 0 0 7px rgba(52, 120, 246, 0.08);
+                opacity: 0.4;
             }
         }
 
         h1 {
             margin: 20px 0 10px;
-            font-size: clamp(28px, 6vw, 38px);
+            font-size: clamp(30px, 6vw, 40px);
             font-weight: 700;
             line-height: 1.15;
-            letter-spacing: -0.8px;
         }
 
         .subtitle {
-            max-width: 350px;
+            max-width: 360px;
             margin: 0 auto;
             color: var(--muted);
-            font-family: system-ui, sans-serif;
-            font-size: 14px;
-            line-height: 1.7;
+            font-size: 16px;
         }
+
+        /* PLATFORM */
 
         .platform-card {
             display: flex;
@@ -191,9 +162,10 @@
             gap: 15px;
             margin-top: 28px;
             padding: 17px;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            background: #f8faff;
+
+            background: #F0F0F0;
+            border: 2px solid #C1C1C1;
+            border-radius: 4px;
             text-align: left;
         }
 
@@ -203,9 +175,10 @@
             height: 52px;
             flex-shrink: 0;
             place-items: center;
-            border: 1px solid #e2eaf8;
-            border-radius: 13px;
-            background: white;
+
+            background: #FFFFFF;
+            border: 1px solid #B6BBC4;
+            border-radius: 3px;
             color: var(--blue);
         }
 
@@ -215,19 +188,20 @@
         }
 
         .platform-name {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
         }
 
         .platform-description {
-            margin-top: 4px;
+            margin-top: 3px;
             color: var(--muted);
-            font-family: system-ui, sans-serif;
-            font-size: 12px;
+            font-size: 14px;
         }
 
+        /* PROGRESS */
+
         .progress-section {
-            margin-top: 24px;
+            margin-top: 25px;
             text-align: left;
         }
 
@@ -235,28 +209,27 @@
             display: flex;
             justify-content: space-between;
             gap: 10px;
-            margin-bottom: 10px;
-            font-family: system-ui, sans-serif;
-            font-size: 11px;
+            margin-bottom: 9px;
+            font-size: 13px;
             font-weight: 700;
         }
 
         .progress-labels span:last-child {
-            color: var(--blue);
+            color: var(--blue-dark);
         }
 
         .progress-track {
-            height: 7px;
+            height: 9px;
             overflow: hidden;
-            border-radius: 20px;
-            background: #eaf0fa;
+            background: #DADDE2;
+            border: 1px solid #B6BBC4;
+            border-radius: 2px;
         }
 
         .progress-bar {
             width: 100%;
             height: 100%;
-            border-radius: inherit;
-            background: linear-gradient(90deg, #3478f6, #70a7ff);
+            background: var(--blue);
             transform-origin: left;
             animation: loading 2.5s ease-in-out infinite alternate;
         }
@@ -266,6 +239,8 @@
             to { transform: scaleX(0.94); }
         }
 
+        /* BUTTONS - SAME TEXTURE AS MAIN WEBSITE */
+
         .download-button {
             display: flex;
             width: 100%;
@@ -274,45 +249,56 @@
             justify-content: center;
             gap: 10px;
             margin-top: 25px;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 13px;
+            padding: 12px 20px;
+
+            border: 11px solid transparent;
+            border-image-source: url("https://raw.githubusercontent.com/Infinite-Sandbox/infinite-sandbox.github.io/main/UIButton.PNG");
+            border-image-slice: 1 fill;
+            border-image-width: 11px;
+            border-image-repeat: stretch;
+
+            background: transparent;
             color: white;
-            background: var(--blue);
-            box-shadow: 0 7px 16px rgba(52, 120, 246, 0.22);
             font-family: inherit;
             font-size: 17px;
             font-weight: 700;
-            text-decoration: none;
+
             cursor: pointer;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.15s, filter 0.15s;
         }
 
         .download-button:hover {
+            filter: brightness(1.15);
             transform: translateY(-2px);
-            background: var(--blue-dark);
-            box-shadow: 0 10px 22px rgba(52, 120, 246, 0.3);
         }
 
         .download-button:active {
-            transform: translateY(0);
+            transform: translateY(2px);
+        }
+
+        .download-button:disabled {
+            cursor: default;
         }
 
         .download-button svg {
             width: 19px;
             height: 19px;
+            flex-shrink: 0;
         }
+
+        /* NOTICE */
 
         .notice {
             display: none;
             margin-top: 15px;
             padding: 13px 15px;
-            border: 1px solid #f1dfb5;
-            border-radius: 12px;
-            color: #76581b;
-            background: #fff9e9;
-            font-family: system-ui, sans-serif;
-            font-size: 12px;
+
+            background: #FFF5DD;
+            border: 1px solid #E3C98C;
+            border-radius: 3px;
+
+            color: #76581B;
+            font-size: 14px;
             line-height: 1.6;
             text-align: left;
         }
@@ -321,70 +307,76 @@
             display: block;
         }
 
+        /* FOOTER */
+
         .card-footer {
-            padding: 17px 25px;
-            border-top: 1px solid #edf0f5;
-            color: #929daf;
-            background: #fbfcfe;
-            font-family: system-ui, sans-serif;
-            font-size: 10px;
+            padding: 15px 20px;
+            border-top: 1px solid #D1D1D1;
+            background: #EEEEEE;
+            color: #626872;
+            font-size: 12px;
+            font-weight: 700;
             text-align: center;
+            letter-spacing: 1px;
         }
+
+        /* STATISTICS */
 
         .stats {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-            margin-top: 18px;
+            gap: 14px;
+            margin-top: 20px;
         }
 
         .stat-card {
             padding: 17px 12px;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.82);
-            box-shadow: 0 5px 18px rgba(41, 57, 82, 0.04);
+
+            background: rgba(255, 255, 255, 0.94);
+            border: 2px solid #B6BBC4;
+            border-radius: 4px;
+            box-shadow: 0 4px 0 rgba(48, 52, 59, 0.08);
+
             text-align: center;
         }
 
         .stat-number {
             display: block;
-            color: var(--blue);
-            font-size: 27px;
+            color: var(--blue-dark);
+            font-size: 30px;
             font-weight: 700;
             font-variant-numeric: tabular-nums;
         }
 
         .stat-label {
             display: block;
-            margin-top: 5px;
-            color: #738096;
-            font-family: system-ui, sans-serif;
-            font-size: 11px;
-            font-weight: 700;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .stats-status {
-            margin-top: 9px;
-            color: #7d899b;
-            font-family: system-ui, sans-serif;
-            font-size: 10px;
+            margin-top: 10px;
+            color: #626872;
+            font-size: 12px;
             text-align: center;
         }
 
+        /* BACK LINK */
+
         .back-link {
             display: inline-block;
-            margin-top: 22px;
-            color: #53647c;
-            font-family: system-ui, sans-serif;
-            font-size: 12px;
+            margin-top: 23px;
+            color: #454B55;
+            font-size: 15px;
             font-weight: 700;
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.15s;
         }
 
         .back-link:hover {
-            color: var(--blue);
+            color: var(--blue-dark);
         }
 
         @media (max-width: 420px) {
@@ -393,7 +385,7 @@
             }
 
             .card-content {
-                padding: 28px 19px 23px;
+                padding: 27px 18px 23px;
             }
 
             .platform-card {
@@ -401,7 +393,7 @@
             }
 
             .stat-number {
-                font-size: 24px;
+                font-size: 25px;
             }
         }
 
@@ -416,21 +408,16 @@
 </head>
 
 <body>
-    <div class="orb orb-blue"></div>
-    <div class="orb orb-green"></div>
-
     <main class="page">
+
         <div class="top-label">Infinite Sandbox · Downloads</div>
 
         <section class="download-card">
             <div class="card-strip"></div>
 
             <div class="card-content">
-                <img
-                    class="logo"
-                    src="TitleLogo.png"
-                    alt="Infinite Sandbox"
-                >
+
+                <img class="logo" src="TitleLogo.png" alt="Infinite Sandbox">
 
                 <div class="status">
                     <span class="status-dot"></span>
@@ -450,6 +437,7 @@
                             <path d="M3 4.8 10.7 3.7v7.6H3V4.8Zm8.7-1.25L21 2.2v9.1h-9.3V3.55ZM3 12.6h7.7v7.7L3 19.2v-6.6Zm8.7 0H21v9.2l-9.3-1.35V12.6Z"/>
                         </svg>
                     </div>
+
                     <div>
                         <div class="platform-name" id="platformName">Windows</div>
                         <div class="platform-description" id="platformDescription">
@@ -463,6 +451,7 @@
                         <span id="progressText">Getting things ready</span>
                         <span id="progressPercent">Please wait</span>
                     </div>
+
                     <div class="progress-track">
                         <div class="progress-bar"></div>
                     </div>
@@ -483,6 +472,7 @@
                     Downloads aren't available yet. Infinite Sandbox is still being prepared
                     for release. Check back soon!
                 </div>
+
             </div>
 
             <div class="card-footer">
@@ -495,6 +485,7 @@
                 <span class="stat-number" id="pageViews">—</span>
                 <span class="stat-label">Page views</span>
             </div>
+
             <div class="stat-card">
                 <span class="stat-number" id="downloadClicks">—</span>
                 <span class="stat-label">Download clicks</span>
@@ -508,6 +499,7 @@
         <div style="text-align:center">
             <a class="back-link" href="index.html">← Back to Infinite Sandbox</a>
         </div>
+
     </main>
 
     <script>
@@ -590,9 +582,10 @@
             }
         }
 
-        // Platform is selected by index.html using ?platform=windows or ?platform=mac
+        // Platform selection
         const params = new URLSearchParams(window.location.search);
         const platform = params.get("platform");
+
         const platformName = document.getElementById("platformName");
         const platformDescription = document.getElementById("platformDescription");
         const platformIcon = document.getElementById("platformIcon");
@@ -617,32 +610,30 @@
             platformIcon.innerHTML = windowsIcon;
         }
 
-        // Track one view for each page load/refresh.
+        // Track page view and load statistics.
         trackPageView();
-
-        // Load the current shared totals as well.
         loadStats();
 
-        // The real download will be connected later.
+        // Download button
         document.getElementById("downloadButton").addEventListener("click", async () => {
             const button = document.getElementById("downloadButton");
             const notice = document.getElementById("downloadNotice");
 
             button.disabled = true;
-            button.style.opacity = "0.8";
             button.querySelector("span").textContent = "Checking download…";
 
             await trackDownloadClick();
 
             notice.classList.add("visible");
+
             document.getElementById("progressText").textContent =
                 "Download not available yet";
+
             document.getElementById("progressPercent").textContent =
                 "Coming soon";
 
             button.querySelector("span").textContent = "Download coming soon";
             button.disabled = false;
-            button.style.opacity = "1";
         });
     </script>
 </body>
