@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#cecece">
-
-    <title>Downloads | Infinite Sandbox</title>
+    <title>Download Infinite Sandbox</title>
 
     <link rel="icon" href="Icon.PNG">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,9 +19,6 @@
             --dark: #30343b;
             --muted: #646a73;
             --blue: #3478f6;
-            --blue-dark: #2058c2;
-            --green: #399b65;
-
             --button-image: url("https://raw.githubusercontent.com/Infinite-Sandbox/infinite-sandbox.github.io/main/UIButton.PNG");
         }
 
@@ -34,17 +29,18 @@
         }
 
         html {
-            min-height: 100%;
             scroll-behavior: smooth;
         }
 
         body {
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            font-family: "Pixelify Sans", monospace;
             color: var(--dark);
             background: var(--room);
-            font-family: "Pixelify Sans", monospace;
             line-height: 1.5;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -53,11 +49,9 @@
             inset: 0;
             z-index: -1;
             pointer-events: none;
-
             background-image:
                 linear-gradient(to right, var(--grid) 1px, transparent 1px),
                 linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-
             background-size: 24px 24px;
         }
 
@@ -65,13 +59,12 @@
             color: inherit;
         }
 
-        button {
-            font-family: inherit;
+        img {
+            display: block;
+            max-width: 100%;
         }
 
-        /* =========================================
-           SHARED PIXEL UI
-        ========================================= */
+        /* BUTTON TEXTURE */
 
         .pixel-button {
             display: inline-flex;
@@ -79,29 +72,29 @@
             justify-content: center;
             gap: 9px;
 
-            min-height: 46px;
-            padding: 9px 20px;
+            min-height: 48px;
+            padding: 10px 22px;
 
-            border: 11px solid transparent;
+            border: 12px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
+            border-image-slice: 1 fill;
+            border-image-width: 12px;
             border-image-repeat: stretch;
 
             background: transparent;
             color: white;
             font-family: inherit;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             text-decoration: none;
             text-align: center;
             cursor: pointer;
 
-            transition: transform .15s, filter .15s;
+            transition: transform .14s, filter .14s;
         }
 
         .pixel-button:hover {
-            filter: brightness(1.16);
+            filter: brightness(1.18);
             transform: translateY(-2px);
         }
 
@@ -118,56 +111,23 @@
         }
 
         .pixel-button:disabled {
-            opacity: .65;
-            cursor: default;
+            opacity: .7;
+            cursor: not-allowed;
             transform: none;
         }
 
-        .pixel-panel {
-            border: 12px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
-            border-image-repeat: stretch;
-            background: transparent;
-        }
-
-        .pixel-label {
-            display: inline-block;
-            padding: 5px 13px;
-
-            border: 8px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 4px;
-            border-image-repeat: stretch;
-
-            color: white;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* =========================================
-           HEADER
-        ========================================= */
+        /* HEADER */
 
         .header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-
             padding: 12px 6%;
 
-            background: rgba(196,196,196,.96);
-            border-bottom: 2px solid rgba(48,52,59,.22);
-            box-shadow: 0 4px 0 rgba(48,52,59,.08);
+            background: rgba(196, 196, 196, .96);
+            border-bottom: 2px solid rgba(48, 52, 59, .22);
+            box-shadow: 0 4px 0 rgba(48, 52, 59, .08);
             backdrop-filter: blur(8px);
         }
 
@@ -188,476 +148,307 @@
             image-rendering: pixelated;
         }
 
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        /* MAIN */
 
-        .header-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #505660;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .header-dot {
-            width: 9px;
-            height: 9px;
-            background: var(--green);
-            border: 1px solid #267849;
-            box-shadow: 0 0 0 3px rgba(57,155,101,.15);
-        }
-
-        /* =========================================
-           PAGE INTRO
-        ========================================= */
-
-        .page {
-            width: min(1080px, 90%);
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 1250px;
             margin: 0 auto;
-            padding: 55px 0 75px;
+            padding: 65px 6% 85px;
         }
 
-        .page-intro {
-            margin-bottom: 35px;
+        .hero {
             text-align: center;
+            margin-bottom: 45px;
         }
 
-        .page-logo {
-            display: block;
-            width: min(420px, 85%);
-            max-height: 135px;
+        .hero-logo {
+            width: min(430px, 85%);
+            max-height: 155px;
             object-fit: contain;
-            margin: 0 auto 24px;
-            filter: drop-shadow(0 4px 0 rgba(0,0,0,.08));
+            margin: 0 auto 22px;
         }
 
-        .page-intro h1 {
-            margin: 15px 0 9px;
-            font-size: clamp(36px, 5vw, 53px);
-            line-height: 1.1;
+        .eyebrow {
+            display: inline-block;
+            padding: 5px 13px;
+            margin-bottom: 12px;
+
+            border: 8px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 1 fill;
+            border-image-width: 8px;
+            border-image-repeat: stretch;
+
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        .page-intro p {
-            color: var(--muted);
+        .hero h1 {
+            font-size: clamp(38px, 6vw, 62px);
+            line-height: 1.08;
+            margin-bottom: 13px;
+            text-shadow: 0 3px 0 rgba(255,255,255,.35);
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #484e57;
             font-size: 18px;
         }
 
-        /* =========================================
-           MAIN LAYOUT
-        ========================================= */
+        /* DOWNLOAD LAYOUT */
 
         .download-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1.6fr) minmax(260px, .85fr);
-            align-items: start;
-            gap: 24px;
+            grid-template-columns: minmax(0, 1.5fr) minmax(260px, .8fr);
+            gap: 28px;
+            align-items: stretch;
         }
 
-        /* =========================================
-           DOWNLOAD PANEL
-        ========================================= */
-
-        .download-card {
-            min-width: 0;
-            padding: 10px;
-
+        .download-panel,
+        .side-panel {
             border: 12px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
+            border-image-slice: 1 fill;
+            border-image-width: 12px;
             border-image-repeat: stretch;
-        }
 
-        .download-inner {
+            background: transparent;
             padding: 25px;
-            background: rgba(255,255,255,.35);
         }
 
-        .download-heading {
+        .panel-heading {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            margin-bottom: 23px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
         }
 
-        .download-heading h2 {
-            font-size: 25px;
+        .panel-heading h2 {
+            font-size: 23px;
         }
 
-        .release-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 6px 11px;
-
-            border: 8px solid transparent;
+        .platform-label {
+            display: inline-block;
+            padding: 5px 11px;
+            border: 7px solid transparent;
             border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 4px;
+            border-image-slice: 1 fill;
+            border-image-width: 7px;
             border-image-repeat: stretch;
-
             color: white;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
-            white-space: nowrap;
             text-transform: uppercase;
         }
 
-        .release-status .dot {
-            width: 7px;
-            height: 7px;
-            background: #a7d5ff;
-        }
+        /* PLATFORM */
 
-        /* PLATFORM SELECTION */
-
-        .platform-title {
-            margin-bottom: 12px;
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .platform-list {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .platform-option {
+        .platform-card {
             display: flex;
             align-items: center;
-            gap: 12px;
-            min-width: 0;
-            padding: 14px;
+            gap: 22px;
+            padding: 20px;
+            margin-bottom: 23px;
 
-            border: 2px solid #969ba4;
-            background: rgba(255,255,255,.5);
-            color: var(--dark);
-            font-family: inherit;
-            text-align: left;
-            cursor: pointer;
-
-            transition: background .15s, border-color .15s, transform .15s;
-        }
-
-        .platform-option:hover {
-            background: rgba(255,255,255,.8);
-            transform: translateY(-2px);
-        }
-
-        .platform-option.selected {
-            background: rgba(52,120,246,.11);
-            border: 2px solid var(--blue);
-            box-shadow: inset 0 0 0 2px rgba(52,120,246,.1);
+            background: rgba(255,255,255,.22);
+            border: 2px solid rgba(48,52,59,.22);
+            box-shadow: 0 4px 0 rgba(48,52,59,.08);
         }
 
         .platform-icon {
+            flex: 0 0 76px;
+            width: 76px;
+            height: 76px;
             display: grid;
-            width: 43px;
-            height: 43px;
-            flex-shrink: 0;
             place-items: center;
-
-            border: 8px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 4px;
-            border-image-repeat: stretch;
-
-            color: white;
-        }
-
-        .platform-icon svg {
-            width: 23px;
-            height: 23px;
-        }
-
-        .platform-info {
-            min-width: 0;
-        }
-
-        .platform-name {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .platform-description {
-            margin-top: 2px;
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .selection-indicator {
-            display: grid;
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            place-items: center;
-            margin-left: auto;
-
-            border: 2px solid #9299a3;
-            border-radius: 50%;
-        }
-
-        .platform-option.selected .selection-indicator {
-            border-color: var(--blue);
-            background: var(--blue);
-            box-shadow: inset 0 0 0 3px white;
-        }
-
-        /* SELECTED PLATFORM */
-
-        .selected-platform {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            margin-top: 23px;
-            padding: 15px;
-
-            background: rgba(48,52,59,.08);
-            border: 1px solid rgba(48,52,59,.2);
-        }
-
-        .selected-platform-icon {
-            display: grid;
-            width: 43px;
-            height: 43px;
-            flex-shrink: 0;
-            place-items: center;
-
             background: #343a44;
             color: white;
         }
 
-        .selected-platform-icon svg {
-            width: 24px;
-            height: 24px;
+        .platform-icon svg {
+            width: 43px;
+            height: 43px;
+            fill: currentColor;
         }
 
-        .selected-platform-name {
-            font-size: 19px;
-            font-weight: 700;
+        .platform-info h3 {
+            font-size: 27px;
+            line-height: 1.2;
+            margin-bottom: 5px;
         }
 
-        .selected-platform-description {
-            color: var(--muted);
-            font-size: 14px;
+        .platform-info p {
+            color: #505660;
+            font-size: 15px;
         }
 
-        /* DOWNLOAD INFORMATION */
+        /* AVAILABILITY */
 
-        .download-information {
-            margin-top: 24px;
-            padding-top: 20px;
-            border-top: 2px solid rgba(48,52,59,.15);
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 17px;
+            margin-bottom: 18px;
+
+            background: rgba(255,255,255,.25);
+            border: 2px solid rgba(48,52,59,.2);
         }
 
-        .information-heading {
-            margin-bottom: 13px;
+        .status-indicator {
+            flex: 0 0 12px;
+            width: 12px;
+            height: 12px;
+            background: #e2a52b;
+            border: 2px solid #9a6a16;
+        }
+
+        .availability strong {
+            display: block;
             font-size: 17px;
         }
 
-        .information-list {
-            display: grid;
-            gap: 10px;
-        }
-
-        .information-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #4c535d;
-            font-size: 15px;
-        }
-
-        .information-item svg {
-            width: 18px;
-            height: 18px;
-            flex-shrink: 0;
-            color: var(--blue-dark);
-        }
-
-        /* DOWNLOAD ACTION */
-
-        .download-action {
-            margin-top: 25px;
-        }
-
-        .download-button {
-            width: 100%;
-            min-height: 57px;
-            font-size: 19px;
-        }
-
-        .download-button svg {
-            width: 21px;
-            height: 21px;
-        }
-
-        .download-note {
-            margin-top: 12px;
-            color: var(--muted);
-            font-size: 13px;
-            text-align: center;
-        }
-
-        .notice {
-            display: none;
-            margin-top: 16px;
-            padding: 15px;
-
-            border: 10px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 5px;
-            border-image-repeat: stretch;
-
-            color: white;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-
-        .notice.visible {
+        .availability span:last-child {
             display: block;
-        }
-
-        /* =========================================
-           RIGHT SIDEBAR
-        ========================================= */
-
-        .sidebar {
-            display: grid;
-            gap: 18px;
-        }
-
-        .sidebar-card {
-            padding: 19px;
-
-            border: 11px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 6px;
-            border-image-repeat: stretch;
-        }
-
-        .sidebar-card h3 {
-            margin-bottom: 13px;
-            font-size: 21px;
-        }
-
-        /* RELEASE INFORMATION */
-
-        .release-version {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(48,52,59,.2);
-        }
-
-        .release-version:last-child {
-            border-bottom: none;
-        }
-
-        .release-version span:first-child {
-            color: #535a64;
+            color: #565d66;
             font-size: 14px;
         }
 
-        .release-version strong {
-            font-size: 15px;
+        .download-description {
+            margin-bottom: 23px;
+            color: #454b55;
+            font-size: 16px;
         }
 
-        .coming-soon {
-            color: var(--blue-dark);
+        .download-action {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
-        /* STATISTICS */
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 10px;
-        }
-
-        .stat-card {
-            padding: 13px 7px;
-
-            border: 8px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 6 fill;
-            border-image-width: 4px;
-            border-image-repeat: stretch;
-
-            text-align: center;
-        }
-
-        .stat-number {
-            display: block;
-            color: white;
-            font-size: clamp(23px, 3vw, 30px);
-            font-weight: 700;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .stat-label {
-            display: block;
-            margin-top: 3px;
-            color: rgba(255,255,255,.85);
-            font-size: 12px;
-        }
-
-        .stats-status {
-            margin-top: 12px;
-            color: #565d66;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /* COMMUNITY CARD */
-
-        .community-card p {
-            margin-bottom: 15px;
-            color: #4e545d;
-            font-size: 15px;
-        }
-
-        .community-card .pixel-button {
+        .download-action .pixel-button {
             width: 100%;
         }
 
-        /* =========================================
-           BOTTOM NAVIGATION
-        ========================================= */
-
-        .bottom-navigation {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 35px;
-        }
-
-        .bottom-navigation a {
+        .download-notice {
+            margin-top: 15px;
+            padding: 13px 15px;
+            background: rgba(255,255,255,.3);
+            border-left: 4px solid #d39a28;
             color: #454b55;
             font-size: 15px;
+        }
+
+        .download-notice[hidden] {
+            display: none;
+        }
+
+        /* PLATFORM SWITCH */
+
+        .platform-switch {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .platform-switch a {
+            flex: 1;
+        }
+
+        .platform-switch .pixel-button {
+            width: 100%;
+            font-size: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        /* SIDE PANEL */
+
+        .side-panel h2 {
+            font-size: 24px;
+            margin-bottom: 17px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 27px;
+        }
+
+        .stat-card {
+            min-width: 0;
+            padding: 15px 10px;
+            text-align: center;
+
+            border: 9px solid transparent;
+            border-image-source: var(--button-image);
+            border-image-slice: 1 fill;
+            border-image-width: 9px;
+            border-image-repeat: stretch;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: clamp(25px, 3vw, 34px);
+            line-height: 1.2;
+            color: white;
+            overflow-wrap: anywhere;
+        }
+
+        .stat-card span {
+            display: block;
+            margin-top: 5px;
+            color: rgba(255,255,255,.9);
+            font-size: 14px;
+        }
+
+        .stats-status {
+            color: #555b64;
+            font-size: 13px;
+            margin-top: -16px;
+            margin-bottom: 25px;
+        }
+
+        .side-divider {
+            height: 2px;
+            background: rgba(48,52,59,.2);
+            margin: 20px 0;
+        }
+
+        .side-panel p {
+            color: #454b55;
+            font-size: 16px;
+        }
+
+        .side-panel ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .side-panel li {
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(48,52,59,.18);
+            font-size: 15px;
+        }
+
+        .side-panel li::before {
+            content: "›";
+            margin-right: 9px;
+            color: var(--blue);
             font-weight: 700;
-            text-decoration: none;
         }
 
-        .bottom-navigation a:hover {
-            color: var(--blue-dark);
-        }
-
-        /* =========================================
-           FOOTER
-        ========================================= */
+        /* FOOTER */
 
         .footer {
             display: flex;
@@ -665,11 +456,15 @@
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 18px;
-            padding: 24px 6%;
+            padding: 25px 6%;
 
             background: #343a44;
             color: white;
             border-top: 4px solid #252a31;
+        }
+
+        .footer p {
+            font-size: 16px;
         }
 
         .footer-links {
@@ -681,80 +476,98 @@
         .footer a {
             color: white;
             text-decoration: none;
+            font-size: 16px;
         }
 
         .footer a:hover {
             color: #8cb5ff;
         }
 
-        /* =========================================
-           RESPONSIVE
-        ========================================= */
+        /* ACCESSIBILITY */
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px dashed var(--blue);
+            outline-offset: 5px;
+        }
+
+        /* RESPONSIVE */
 
         @media (max-width: 800px) {
+            main {
+                padding-top: 45px;
+            }
+
             .download-layout {
                 grid-template-columns: 1fr;
             }
 
-            .sidebar {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .community-card {
-                grid-column: 1 / -1;
+            .side-panel {
+                display: grid;
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 550px) {
             .header {
-                padding: 12px 5%;
+                justify-content: center;
+                padding: 12px 4%;
             }
 
             .brand {
                 font-size: 19px;
             }
 
-            .header-status {
-                font-size: 12px;
+            main {
+                padding: 40px 5% 60px;
             }
 
-            .page {
-                width: 92%;
-                padding-top: 38px;
+            .hero h1 {
+                font-size: 39px;
             }
 
-            .page-intro h1 {
-                font-size: 37px;
-            }
-
-            .page-intro p {
+            .hero p {
                 font-size: 16px;
             }
 
-            .download-inner {
-                padding: 17px 13px;
+            .download-panel,
+            .side-panel {
+                padding: 17px;
             }
 
-            .download-heading {
-                align-items: flex-start;
+            .platform-card {
+                gap: 13px;
+                padding: 13px;
+            }
+
+            .platform-icon {
+                flex-basis: 58px;
+                width: 58px;
+                height: 58px;
+            }
+
+            .platform-icon svg {
+                width: 34px;
+                height: 34px;
+            }
+
+            .platform-info h3 {
+                font-size: 22px;
+            }
+
+            .platform-switch {
                 flex-direction: column;
             }
 
-            .platform-list {
-                grid-template-columns: 1fr;
-            }
-
-            .sidebar {
-                grid-template-columns: 1fr;
-            }
-
-            .community-card {
-                grid-column: auto;
+            .stats-grid {
+                gap: 8px;
             }
 
             .footer {
+                align-items: center;
                 flex-direction: column;
                 text-align: center;
+                padding: 25px 5%;
             }
 
             .footer-links {
@@ -767,7 +580,6 @@
             *::before,
             *::after {
                 scroll-behavior: auto !important;
-                animation-duration: .01ms !important;
                 transition-duration: .01ms !important;
             }
         }
@@ -776,574 +588,323 @@
 
 <body>
 
-    <!-- HEADER -->
+<header class="header">
+    <a class="brand" href="index.html">
+        <img src="Icon.PNG" alt="">
+        <span>INFINITE SANDBOX</span>
+    </a>
 
-    <header class="header">
-        <a class="brand" href="index.html">
-            <img src="Icon.PNG" alt="">
-            <span>INFINITE SANDBOX</span>
-        </a>
+    <a class="pixel-button" href="index.html">
+        Back to website
+    </a>
+</header>
 
-        <div class="header-right">
-            <div class="header-status">
-                <span class="header-dot"></span>
-                Official download portal
+<main>
+
+    <section class="hero">
+        <img class="hero-logo" src="TitleLogo.png" alt="Infinite Sandbox">
+
+        <span class="eyebrow">Download portal</span>
+
+        <h1>Get Infinite Sandbox</h1>
+
+        <p>
+            Choose your platform and get ready to create,
+            experiment, and explore.
+        </p>
+    </section>
+
+    <section class="download-layout">
+
+        <article class="download-panel">
+
+            <div class="panel-heading">
+                <h2>Your download</h2>
+                <span class="platform-label">Selected platform</span>
             </div>
-        </div>
-    </header>
 
-    <main class="page">
+            <div class="platform-card">
 
-        <!-- INTRO -->
-
-        <section class="page-intro">
-            <img class="page-logo" src="TitleLogo.png" alt="Infinite Sandbox">
-
-            <span class="pixel-label">Official downloads</span>
-
-            <h1>Get the game.</h1>
-
-            <p>Choose your platform and get ready to experiment.</p>
-        </section>
-
-        <!-- MAIN CONTENT -->
-
-        <div class="download-layout">
-
-            <!-- DOWNLOAD CARD -->
-
-            <section class="download-card">
-
-                <div class="download-inner">
-
-                    <div class="download-heading">
-                        <h2>Download Infinite Sandbox</h2>
-
-                        <span class="release-status">
-                            <span class="dot"></span>
-                            In development
-                        </span>
-                    </div>
-
-                    <!-- PLATFORM SELECTOR -->
-
-                    <div class="platform-title">Select your platform</div>
-
-                    <div class="platform-list">
-
-                        <button class="platform-option selected"
-                                type="button"
-                                data-platform="windows"
-                                aria-pressed="true">
-
-                            <span class="platform-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M3 4.8 10.7 3.7v7.6H3V4.8Zm8.7-1.25L21 2.2v9.1h-9.3V3.55ZM3 12.6h7.7v7.7L3 19.2v-6.6Zm8.7 0H21v9.2l-9.3-1.35V12.6Z"/>
-                                </svg>
-                            </span>
-
-                            <span class="platform-info">
-                                <span class="platform-name">Windows</span>
-                                <span class="platform-description">PC desktop</span>
-                            </span>
-
-                            <span class="selection-indicator"></span>
-                        </button>
-
-                        <button class="platform-option"
-                                type="button"
-                                data-platform="mac"
-                                aria-pressed="false">
-
-                            <span class="platform-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M17.05 12.54c.02 2.14 1.88 2.85 1.9 2.86-.02.05-.3 1.04-.98 2.06-.59.88-1.2 1.75-2.16 1.77-.94.02-1.25-.57-2.33-.57s-1.42.55-2.31.59c-.93.04-1.64-.95-2.23-1.83-1.21-1.78-2.14-5.03-.9-7.23.62-1.09 1.72-1.78 2.91-1.8.91-.02 1.76.62 2.33.62.56 0 1.61-.77 2.71-.66.46.02 1.76.19 2.6 1.42-.07.04-1.55.91-1.54 2.77ZM15.3 6.56c.49-.6.82-1.44.73-2.28-.71.03-1.57.48-2.08 1.08-.46.53-.87 1.38-.76 2.19.79.06 1.61-.4 2.11-.99Z"/>
-                                </svg>
-                            </span>
-
-                            <span class="platform-info">
-                                <span class="platform-name">macOS</span>
-                                <span class="platform-description">Mac desktop</span>
-                            </span>
-
-                            <span class="selection-indicator"></span>
-                        </button>
-
-                    </div>
-
-                    <!-- SELECTED PLATFORM -->
-
-                    <div class="selected-platform">
-
-                        <div class="selected-platform-icon" id="selectedIcon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3 4.8 10.7 3.7v7.6H3V4.8Zm8.7-1.25L21 2.2v9.1h-9.3V3.55ZM3 12.6h7.7v7.7L3 19.2v-6.6Zm8.7 0H21v9.2l-9.3-1.35V12.6Z"/>
-                            </svg>
-                        </div>
-
-                        <div>
-                            <div class="selected-platform-name" id="selectedName">
-                                Windows version
-                            </div>
-
-                            <div class="selected-platform-description" id="selectedDescription">
-                                Desktop edition · Coming soon
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- INFORMATION -->
-
-                    <div class="download-information">
-
-                        <h3 class="information-heading">Before you download</h3>
-
-                        <div class="information-list">
-
-                            <div class="information-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/>
-                                    <path d="m9 12 2 2 4-4"/>
-                                </svg>
-                                Official Infinite Sandbox downloads
-                            </div>
-
-                            <div class="information-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="16" rx="1"/>
-                                    <path d="M7 8h10M7 12h10M7 16h6"/>
-                                </svg>
-                                Desktop game release
-                            </div>
-
-                            <div class="information-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <path d="M12 8v4l3 2"/>
-                                </svg>
-                                Builds will appear here when released
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <!-- DOWNLOAD BUTTON -->
-
-                    <div class="download-action">
-
-                        <button class="pixel-button download-button"
-                                id="downloadButton"
-                                type="button">
-
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                                <path d="m7 10 5 5 5-5"/>
-                                <path d="M12 15V3"/>
-                            </svg>
-
-                            <span>Download for Windows</span>
-                        </button>
-
-                        <p class="download-note">
-                            The selected version is not available yet.
-                        </p>
-
-                        <div class="notice" id="downloadNotice" role="status" aria-live="polite">
-                            Downloads aren't available yet. Infinite Sandbox is still being prepared for release. Check back soon!
-                        </div>
-
-                    </div>
-
+                <div class="platform-icon" id="platformIcon" aria-hidden="true">
+                    <!-- Windows icon is inserted by JavaScript -->
                 </div>
-            </section>
 
-            <!-- SIDEBAR -->
+                <div class="platform-info">
+                    <h3 id="platformName">Windows</h3>
+                    <p id="platformDescription">For Windows computers</p>
+                </div>
 
-            <aside class="sidebar">
+            </div>
 
-                <!-- RELEASE DETAILS -->
+            <div class="availability">
+                <span class="status-indicator"></span>
 
-                <section class="sidebar-card">
+                <div>
+                    <strong>Coming soon</strong>
+                    <span>Downloads are not available yet.</span>
+                </div>
+            </div>
 
-                    <h3>Release information</h3>
+            <p class="download-description">
+                Infinite Sandbox is currently in development.
+                The download will become available here when a build is ready.
+            </p>
 
-                    <div class="release-version">
-                        <span>Current version</span>
-                        <strong>—</strong>
-                    </div>
+            <div class="download-action">
+                <button class="pixel-button" id="downloadButton" type="button">
+                    Download coming soon
+                </button>
+            </div>
 
-                    <div class="release-version">
-                        <span>Release stage</span>
-                        <strong class="coming-soon">In development</strong>
-                    </div>
+            <p class="download-notice" id="downloadNotice" role="status" hidden>
+                Downloads are not available yet. Check back for future updates.
+            </p>
 
-                    <div class="release-version">
-                        <span>Windows build</span>
-                        <strong>Coming soon</strong>
-                    </div>
+            <div class="platform-switch">
+                <a class="pixel-button" id="windowsLink" href="download.html?platform=windows">
+                    Windows
+                </a>
 
-                    <div class="release-version">
-                        <span>Mac build</span>
-                        <strong>Coming soon</strong>
-                    </div>
+                <a class="pixel-button secondary" id="macLink" href="download.html?platform=mac">
+                    macOS
+                </a>
+            </div>
 
-                </section>
+        </article>
 
-                <!-- STATISTICS -->
+        <aside class="side-panel">
 
-                <section class="sidebar-card">
+            <h2>Community statistics</h2>
 
-                    <h3>Download statistics</h3>
+            <div class="stats-grid">
 
-                    <div class="stats-grid">
+                <div class="stat-card">
+                    <strong id="pageViews">—</strong>
+                    <span>Page views</span>
+                </div>
 
-                        <div class="stat-card">
-                            <span class="stat-number" id="pageViews">—</span>
-                            <span class="stat-label">Page views</span>
-                        </div>
+                <div class="stat-card">
+                    <strong id="downloadClicks">—</strong>
+                    <span>Download clicks</span>
+                </div>
 
-                        <div class="stat-card">
-                            <span class="stat-number" id="downloadClicks">—</span>
-                            <span class="stat-label">Download clicks</span>
-                        </div>
+            </div>
 
-                    </div>
+            <p class="stats-status" id="statsStatus" aria-live="polite">
+                Loading statistics...
+            </p>
 
-                    <div class="stats-status" id="statsStatus" aria-live="polite">
-                        Connecting to statistics...
-                    </div>
+            <div class="side-divider"></div>
 
-                </section>
+            <h2>About the download</h2>
 
-                <!-- COMMUNITY -->
+            <p>
+                The download portal will provide access to Infinite Sandbox
+                builds for supported platforms.
+            </p>
 
-                <section class="sidebar-card community-card">
+            <ul>
+                <li>Windows build coming soon</li>
+                <li>macOS build coming soon</li>
+                <li>Updates will appear here</li>
+            </ul>
 
-                    <h3>Join the community</h3>
+        </aside>
 
-                    <p>
-                        Follow development, see new gameplay and get updates
-                        about upcoming releases.
-                    </p>
+    </section>
 
-                    <a class="pixel-button"
-                       href="https://www.youtube.com/@Infinite.Sandbox"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Visit YouTube
-                    </a>
+</main>
 
-                </section>
+<footer class="footer">
+    <p>© <span id="year"></span> Infinite Sandbox</p>
 
-            </aside>
+    <div class="footer-links">
+        <a href="index.html">Home</a>
 
-        </div>
+        <a href="https://www.youtube.com/@Infinite.Sandbox"
+           target="_blank"
+           rel="noopener noreferrer">YouTube</a>
 
-        <!-- BOTTOM LINKS -->
+        <a href="https://www.tiktok.com/@infinite_sandbox"
+           target="_blank"
+           rel="noopener noreferrer">TikTok</a>
+    </div>
+</footer>
 
-        <nav class="bottom-navigation" aria-label="Page navigation">
-            <a href="index.html">← Back to homepage</a>
-            <a href="https://www.tiktok.com/@infinite_sandbox"
-               target="_blank"
-               rel="noopener noreferrer">TikTok</a>
-            <a href="https://www.youtube.com/@Infinite.Sandbox"
-               target="_blank"
-               rel="noopener noreferrer">YouTube</a>
-        </nav>
+<script>
+    /* GENERAL */
 
-    </main>
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
 
-    <!-- FOOTER -->
+    /* PLATFORM SELECTION */
 
-    <footer class="footer">
+    const params = new URLSearchParams(window.location.search);
 
-        <p>© <span id="year"></span> Infinite Sandbox</p>
+    const requestedPlatform = params.get("platform")?.toLowerCase();
 
-        <div class="footer-links">
-            <a href="index.html">Homepage</a>
-            <a href="https://www.youtube.com/@Infinite.Sandbox"
-               target="_blank"
-               rel="noopener noreferrer">YouTube</a>
-            <a href="https://www.tiktok.com/@infinite_sandbox"
-               target="_blank"
-               rel="noopener noreferrer">TikTok</a>
-        </div>
+    const platform = requestedPlatform === "mac" ? "mac" : "windows";
 
-    </footer>
+    const platformName = document.getElementById("platformName");
+    const platformDescription = document.getElementById("platformDescription");
+    const platformIcon = document.getElementById("platformIcon");
 
-    <script>
-        // =========================================
-        // GENERAL
-        // =========================================
+    const windowsLink = document.getElementById("windowsLink");
+    const macLink = document.getElementById("macLink");
 
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+    const windowsSVG = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M1 3.5 10.5 2v9H1V3.5Zm10.5-1.7L23 0v11H11.5V1.8ZM1 12h9.5v9L1 19.5V12Zm10.5 0H23v12l-11.5-1.8V12Z"/>
+        </svg>
+    `;
 
+    const macSVG = `
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16.6 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.2-2.8.9-3.6.9-.7 0-1.9-.9-3.1-.9-1.6 0-3.1.9-3.9 2.3-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.7-.7 3.2-.7s1.9.7 3.2.7c1.3 0 2.1-1.1 2.9-2.2.9-1.3 1.2-2.5 1.2-2.6-.1 0-2.4-.9-2.4-4.3ZM14.2 6.4c.7-.8 1.2-1.9 1.1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1.1.1 2.1-.5 2.8-1.3Z"/>
+        </svg>
+    `;
 
-        // =========================================
-        // SUPABASE STATISTICS
-        // =========================================
+    if (platform === "mac") {
+        platformName.textContent = "macOS";
+        platformDescription.textContent = "For Apple Mac computers";
+        platformIcon.innerHTML = macSVG;
 
-        const SUPABASE_URL =
-            "https://ctbshpsasueuopudgqyr.supabase.co";
+        macLink.classList.remove("secondary");
+        windowsLink.classList.add("secondary");
 
-        const SUPABASE_KEY =
-            "sb_publishable_0mgxXikGBYokMqiq-aX5-g_8ah1o9n_";
+        document.title = "Download for macOS | Infinite Sandbox";
+    } else {
+        platformName.textContent = "Windows";
+        platformDescription.textContent = "For Windows computers";
+        platformIcon.innerHTML = windowsSVG;
 
-        const pageViewsElement =
-            document.getElementById("pageViews");
+        windowsLink.classList.remove("secondary");
+        macLink.classList.add("secondary");
 
-        const downloadClicksElement =
-            document.getElementById("downloadClicks");
+        document.title = "Download for Windows | Infinite Sandbox";
+    }
 
-        const statsStatusElement =
-            document.getElementById("statsStatus");
+    /* SUPABASE STATISTICS */
 
-        const numberFormat = new Intl.NumberFormat();
+    const SUPABASE_URL =
+        "https://ctbshpsasueuopudgqyr.supabase.co";
 
-        function displayStats(stats) {
-            if (!stats ||
-                typeof stats.page_views === "undefined") {
-                throw new Error("Unexpected statistics response.");
+    const SUPABASE_KEY =
+        "sb_publishable_0mgxXikGBYokMqiq-aX5-g_8ah1o9n_";
+
+    const pageViewsElement = document.getElementById("pageViews");
+    const downloadClicksElement = document.getElementById("downloadClicks");
+    const statsStatus = document.getElementById("statsStatus");
+
+    async function callRPC(functionName) {
+        const response = await fetch(
+            `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                },
+                body: JSON.stringify({})
             }
-
-            pageViewsElement.textContent =
-                numberFormat.format(Number(stats.page_views));
-
-            downloadClicksElement.textContent =
-                numberFormat.format(Number(stats.download_clicks));
-        }
-
-        async function callCounter(functionName) {
-            const response = await fetch(
-                `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "apikey": SUPABASE_KEY,
-                        "Authorization": `Bearer ${SUPABASE_KEY}`
-                    },
-                    body: "{}"
-                }
-            );
-
-            if (!response.ok) {
-                const detail = await response.text();
-
-                throw new Error(
-                    `Supabase ${response.status}: ${detail.slice(0, 250)}`
-                );
-            }
-
-            return response.json();
-        }
-
-        async function loadStatistics() {
-            try {
-                // Record the page view. This RPC also returns updated stats.
-                const stats = await callCounter(
-                    "track_download_page_view"
-                );
-
-                displayStats(stats);
-
-                statsStatusElement.textContent =
-                    "Live shared statistics";
-
-            } catch (error) {
-                console.error("Statistics error:", error);
-
-                // Attempt to retrieve statistics even if tracking failed.
-                try {
-                    const stats = await callCounter(
-                        "get_download_stats"
-                    );
-
-                    displayStats(stats);
-
-                    statsStatusElement.textContent =
-                        "Statistics loaded · View tracking unavailable";
-
-                } catch (fallbackError) {
-                    console.error("Statistics fallback error:", fallbackError);
-
-                    statsStatusElement.textContent =
-                        "Statistics temporarily unavailable";
-                }
-            }
-        }
-
-        async function trackDownloadClick() {
-            try {
-                const stats = await callCounter(
-                    "track_download_click"
-                );
-
-                displayStats(stats);
-
-            } catch (error) {
-                console.error("Download tracking error:", error);
-            }
-        }
-
-        // One initial statistics request.
-        loadStatistics();
-
-
-        // =========================================
-        // PLATFORM SELECTION
-        // =========================================
-
-        const params = new URLSearchParams(
-            window.location.search
         );
 
-        const platformButtons =
-            document.querySelectorAll(".platform-option");
-
-        const selectedName =
-            document.getElementById("selectedName");
-
-        const selectedDescription =
-            document.getElementById("selectedDescription");
-
-        const selectedIcon =
-            document.getElementById("selectedIcon");
-
-        const downloadButton =
-            document.getElementById("downloadButton");
-
-        const downloadNotice =
-            document.getElementById("downloadNotice");
-
-        const downloadNote =
-            document.querySelector(".download-note");
-
-        const windowsIcon = `
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 4.8 10.7 3.7v7.6H3V4.8Zm8.7-1.25L21 2.2v9.1h-9.3V3.55ZM3 12.6h7.7v7.7L3 19.2v-6.6Zm8.7 0H21v9.2l-9.3-1.35V12.6Z"/>
-            </svg>
-        `;
-
-        const macIcon = `
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.05 12.54c.02 2.14 1.88 2.85 1.9 2.86-.02.05-.3 1.04-.98 2.06-.59.88-1.2 1.75-2.16 1.77-.94.02-1.25-.57-2.33-.57s-1.42.55-2.31.59c-.93.04-1.64-.95-2.23-1.83-1.21-1.78-2.14-5.03-.9-7.23.62-1.09 1.72-1.78 2.91-1.8.91-.02 1.76.62 2.33.62.56 0 1.61-.77 2.71-.66.46.02 1.76.19 2.6 1.42-.07.04-1.55.91-1.54 2.77ZM15.3 6.56c.49-.6.82-1.44.73-2.28-.71.03-1.57.48-2.08 1.08-.46.53-.87 1.38-.76 2.19.79.06 1.61-.4 2.11-.99Z"/>
-            </svg>
-        `;
-
-        let selectedPlatform = "windows";
-
-        function selectPlatform(platform, updateUrl = true) {
-
-            if (platform !== "mac" && platform !== "windows") {
-                platform = "windows";
-            }
-
-            selectedPlatform = platform;
-
-            const isMac = platform === "mac";
-
-            const name = isMac ? "macOS" : "Windows";
-
-            // Update platform buttons.
-            platformButtons.forEach(button => {
-                const selected =
-                    button.dataset.platform === platform;
-
-                button.classList.toggle("selected", selected);
-
-                button.setAttribute(
-                    "aria-pressed",
-                    String(selected)
-                );
-            });
-
-            // Update selected platform panel.
-            selectedName.textContent =
-                isMac ? "macOS version" : "Windows version";
-
-            selectedDescription.textContent =
-                isMac
-                    ? "Mac desktop edition · Coming soon"
-                    : "Windows desktop edition · Coming soon";
-
-            selectedIcon.innerHTML =
-                isMac ? macIcon : windowsIcon;
-
-            // Update download button.
-            downloadButton.querySelector("span").textContent =
-                `Download for ${name}`;
-
-            // Update URL without reloading.
-            if (updateUrl) {
-                const newUrl = new URL(window.location.href);
-
-                newUrl.searchParams.set("platform", platform);
-
-                window.history.replaceState(
-                    {},
-                    "",
-                    newUrl
-                );
-            }
-
-            // Hide any previous notification.
-            downloadNotice.classList.remove("visible");
-
-            downloadNote.textContent =
-                `${name} version selected · Not available yet`;
+        if (!response.ok) {
+            throw new Error(`Statistics request failed: ${response.status}`);
         }
 
-        // Platform button listeners.
-        platformButtons.forEach(button => {
-            button.addEventListener("click", () => {
-                selectPlatform(button.dataset.platform);
-            });
-        });
+        return await response.json();
+    }
 
-        // Read platform from URL.
-        const initialPlatform =
-            params.get("platform") === "mac" ? "mac" : "windows";
+    function updateStats(data) {
+        /*
+         * Supports either a single object or an array containing
+         * one object, depending on the Supabase RPC response.
+         */
+        const stats = Array.isArray(data) ? data[0] : data;
 
-        selectPlatform(initialPlatform, false);
+        if (!stats || typeof stats !== "object") {
+            throw new Error("Invalid statistics response");
+        }
 
+        const views =
+            stats.page_views ??
+            stats.total_page_views ??
+            stats.views;
 
-        // =========================================
-        // DOWNLOAD BUTTON
-        // =========================================
+        const clicks =
+            stats.download_clicks ??
+            stats.total_download_clicks ??
+            stats.clicks;
 
-        downloadButton.addEventListener("click", async () => {
+        if (views !== undefined) {
+            pageViewsElement.textContent =
+                Number(views).toLocaleString();
+        }
 
-            downloadButton.disabled = true;
+        if (clicks !== undefined) {
+            downloadClicksElement.textContent =
+                Number(clicks).toLocaleString();
+        }
+    }
 
-            downloadButton.querySelector("span").textContent =
-                "Checking availability...";
+    async function loadStats() {
+        statsStatus.textContent = "Loading statistics...";
 
-            await trackDownloadClick();
+        try {
+            /*
+             * Record this page view and use the returned statistics.
+             * This avoids separately recording and fetching twice.
+             */
+            const data = await callRPC("track_download_page_view");
 
-            const platformName =
-                selectedPlatform === "mac" ? "macOS" : "Windows";
+            updateStats(data);
+            statsStatus.textContent = "Statistics updated";
+        } catch (error) {
+            console.error("Page-view tracking failed:", error);
 
-            downloadNotice.textContent =
-                `The ${platformName} version of Infinite Sandbox isn't available for download yet. The game is still in development. Check back for future builds and release announcements.`;
+            /*
+             * If tracking fails, try retrieving existing statistics.
+             */
+            try {
+                const data = await callRPC("get_download_stats");
 
-            downloadNotice.classList.add("visible");
+                updateStats(data);
+                statsStatus.textContent =
+                    "Statistics loaded; page view could not be recorded.";
+            } catch (fallbackError) {
+                console.error("Statistics loading failed:", fallbackError);
+                statsStatus.textContent = "Statistics are currently unavailable.";
+            }
+        }
+    }
 
-            downloadNote.textContent =
-                "No download is currently available.";
+    /* DOWNLOAD BUTTON */
 
-            downloadButton.querySelector("span").textContent =
-                "Coming soon";
+    const downloadButton = document.getElementById("downloadButton");
+    const downloadNotice = document.getElementById("downloadNotice");
 
+    downloadButton.addEventListener("click", async () => {
+        downloadNotice.hidden = false;
+
+        downloadButton.disabled = true;
+        downloadButton.textContent = "Download coming soon";
+
+        try {
+            const data = await callRPC("track_download_click");
+            updateStats(data);
+        } catch (error) {
+            console.error("Download click tracking failed:", error);
+        } finally {
             downloadButton.disabled = false;
+        }
+    });
 
-        });
+    /* START */
 
-    </script>
+    loadStats();
+</script>
 
 </body>
 </html>
