@@ -59,23 +59,17 @@
             color: inherit;
         }
 
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        /* BUTTON TEXTURE */
+        /* BUTTONS */
 
         .pixel-button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 9px;
-
+            gap: 8px;
             min-height: 48px;
             padding: 10px 22px;
 
-            border: 6px solid transparent;
+            border: 12px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 12px;
@@ -89,7 +83,6 @@
             text-decoration: none;
             text-align: center;
             cursor: pointer;
-
             transition: transform .14s, filter .14s;
         }
 
@@ -119,12 +112,14 @@
         /* HEADER */
 
         .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 20px;
             padding: 12px 6%;
-
             background: rgba(196, 196, 196, .96);
             border-bottom: 2px solid rgba(48, 52, 59, .22);
             box-shadow: 0 4px 0 rgba(48, 52, 59, .08);
@@ -153,34 +148,35 @@
         main {
             flex: 1;
             width: 100%;
-            max-width: 1250px;
-            margin: 0 auto;
-            padding: 65px 6% 85px;
         }
 
         .hero {
+            min-height: 390px;
+            padding: 65px 6% 55px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            margin-bottom: 45px;
         }
 
         .hero-logo {
             width: min(430px, 85%);
             max-height: 155px;
             object-fit: contain;
-            margin: 0 auto 22px;
+            margin-bottom: 22px;
+            filter: drop-shadow(0 5px 0 rgba(0,0,0,.08));
         }
 
         .eyebrow {
             display: inline-block;
             padding: 5px 13px;
             margin-bottom: 12px;
-
             border: 8px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 8px;
             border-image-repeat: stretch;
-
             color: white;
             font-size: 14px;
             font-weight: 700;
@@ -197,101 +193,142 @@
 
         .hero p {
             max-width: 600px;
-            margin: 0 auto;
             color: #484e57;
             font-size: 18px;
         }
 
-        /* DOWNLOAD LAYOUT */
+        /* DOWNLOAD SECTION */
 
-        .download-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1.5fr) minmax(260px, .8fr);
-            gap: 28px;
-            align-items: stretch;
+        .download-section {
+            width: min(850px, 88%);
+            margin: 0 auto 90px;
         }
 
-        .download-panel,
-        .side-panel {
-            border: 6px solid transparent;
+        .download-panel {
+            padding: 30px;
+            border: 12px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
             border-image-width: 12px;
             border-image-repeat: stretch;
-
-            background: transparent;
-            padding: 25px;
         }
 
-        .panel-heading {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
+        .panel-title {
+            text-align: center;
             margin-bottom: 25px;
         }
 
-        .panel-heading h2 {
-            font-size: 23px;
+        .panel-title h2 {
+            font-size: 29px;
+            margin-bottom: 5px;
         }
 
-        .platform-label {
-            display: inline-block;
-            padding: 5px 11px;
-            border: 7px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 1 fill;
-            border-image-width: 7px;
-            border-image-repeat: stretch;
-            color: white;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
+        .panel-title p {
+            color: var(--muted);
+            font-size: 16px;
         }
 
-        /* PLATFORM */
+        /* PLATFORM SELECTOR */
 
-        .platform-card {
+        .platform-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 27px;
+        }
+
+        .platform-option {
+            min-height: 100px;
             display: flex;
             align-items: center;
-            gap: 22px;
-            padding: 20px;
-            margin-bottom: 23px;
-
-            background: rgba(255,255,255,.22);
-            border: 2px solid rgba(48,52,59,.22);
-            box-shadow: 0 4px 0 rgba(48,52,59,.08);
+            justify-content: center;
+            gap: 13px;
+            padding: 15px;
+            border: 2px solid rgba(48,52,59,.25);
+            background: rgba(255,255,255,.2);
+            color: var(--dark);
+            font-family: inherit;
+            cursor: pointer;
+            transition: background .15s, border-color .15s, transform .15s;
         }
 
-        .platform-icon {
-            flex: 0 0 76px;
-            width: 76px;
-            height: 76px;
+        .platform-option:hover {
+            background: rgba(255,255,255,.4);
+            transform: translateY(-2px);
+        }
+
+        .platform-option.active {
+            background: #343a44;
+            border-color: #343a44;
+            color: white;
+            box-shadow: 0 4px 0 rgba(48,52,59,.2);
+        }
+
+        .platform-option svg {
+            width: 38px;
+            height: 38px;
+            flex: 0 0 38px;
+            fill: currentColor;
+        }
+
+        .platform-option span {
+            display: block;
+            text-align: left;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .platform-option small {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            opacity: .75;
+        }
+
+        /* SELECTED PLATFORM */
+
+        .selected-platform {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+            padding: 19px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,.25);
+            border: 2px solid rgba(48,52,59,.2);
+        }
+
+        .selected-icon {
+            width: 58px;
+            height: 58px;
+            flex: 0 0 58px;
             display: grid;
             place-items: center;
             background: #343a44;
             color: white;
         }
 
-        .platform-icon svg {
-            width: 43px;
-            height: 43px;
+        .selected-icon svg {
+            width: 33px;
+            height: 33px;
             fill: currentColor;
         }
 
-        .platform-info h3 {
-            font-size: 27px;
-            line-height: 1.2;
-            margin-bottom: 5px;
+        .selected-info {
+            min-width: 0;
         }
 
-        .platform-info p {
-            color: #505660;
+        .selected-info h3 {
+            font-size: 25px;
+            line-height: 1.2;
+            margin-bottom: 3px;
+        }
+
+        .selected-info p {
+            color: #555b64;
             font-size: 15px;
         }
 
-        /* AVAILABILITY */
+        /* STATUS */
 
         .availability {
             display: flex;
@@ -299,22 +336,21 @@
             gap: 12px;
             padding: 15px 17px;
             margin-bottom: 18px;
-
             background: rgba(255,255,255,.25);
             border: 2px solid rgba(48,52,59,.2);
         }
 
         .status-indicator {
-            flex: 0 0 12px;
             width: 12px;
             height: 12px;
+            flex: 0 0 12px;
             background: #e2a52b;
             border: 2px solid #9a6a16;
         }
 
         .availability strong {
             display: block;
-            font-size: 17px;
+            font-size: 18px;
         }
 
         .availability span:last-child {
@@ -324,15 +360,14 @@
         }
 
         .download-description {
-            margin-bottom: 23px;
+            margin-bottom: 22px;
             color: #454b55;
             font-size: 16px;
+            text-align: center;
         }
 
         .download-action {
             width: 100%;
-            display: flex;
-            justify-content: center;
         }
 
         .download-action .pixel-button {
@@ -346,50 +381,28 @@
             border-left: 4px solid #d39a28;
             color: #454b55;
             font-size: 15px;
+            text-align: center;
         }
 
         .download-notice[hidden] {
             display: none;
         }
 
-        /* PLATFORM SWITCH */
+        /* STATISTICS */
 
-        .platform-switch {
+        .statistics {
             display: flex;
-            gap: 12px;
-            margin-top: 25px;
-        }
-
-        .platform-switch a {
-            flex: 1;
-        }
-
-        .platform-switch .pixel-button {
-            width: 100%;
-            font-size: 15px;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        /* SIDE PANEL */
-
-        .side-panel h2 {
-            font-size: 24px;
-            margin-bottom: 17px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 27px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 28px;
         }
 
         .stat-card {
-            min-width: 0;
-            padding: 15px 10px;
+            flex: 1 1 180px;
+            max-width: 260px;
+            padding: 15px;
             text-align: center;
-
             border: 9px solid transparent;
             border-image-source: var(--button-image);
             border-image-slice: 1 fill;
@@ -399,53 +412,23 @@
 
         .stat-card strong {
             display: block;
-            font-size: clamp(25px, 3vw, 34px);
-            line-height: 1.2;
             color: white;
-            overflow-wrap: anywhere;
+            font-size: 32px;
+            line-height: 1.2;
         }
 
         .stat-card span {
             display: block;
-            margin-top: 5px;
+            margin-top: 4px;
             color: rgba(255,255,255,.9);
             font-size: 14px;
         }
 
         .stats-status {
+            margin-top: 12px;
             color: #555b64;
             font-size: 13px;
-            margin-top: -16px;
-            margin-bottom: 25px;
-        }
-
-        .side-divider {
-            height: 2px;
-            background: rgba(48,52,59,.2);
-            margin: 20px 0;
-        }
-
-        .side-panel p {
-            color: #454b55;
-            font-size: 16px;
-        }
-
-        .side-panel ul {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        .side-panel li {
-            padding: 9px 0;
-            border-bottom: 1px solid rgba(48,52,59,.18);
-            font-size: 15px;
-        }
-
-        .side-panel li::before {
-            content: "›";
-            margin-right: 9px;
-            color: var(--blue);
-            font-weight: 700;
+            text-align: center;
         }
 
         /* FOOTER */
@@ -457,7 +440,6 @@
             flex-wrap: wrap;
             gap: 18px;
             padding: 25px 6%;
-
             background: #343a44;
             color: white;
             border-top: 4px solid #252a31;
@@ -493,22 +475,7 @@
 
         /* RESPONSIVE */
 
-        @media (max-width: 800px) {
-            main {
-                padding-top: 45px;
-            }
-
-            .download-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .side-panel {
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 550px) {
+        @media (max-width: 600px) {
             .header {
                 justify-content: center;
                 padding: 12px 4%;
@@ -518,8 +485,13 @@
                 font-size: 19px;
             }
 
-            main {
-                padding: 40px 5% 60px;
+            .header .pixel-button {
+                display: none;
+            }
+
+            .hero {
+                min-height: 340px;
+                padding: 45px 5%;
             }
 
             .hero h1 {
@@ -530,37 +502,64 @@
                 font-size: 16px;
             }
 
-            .download-panel,
-            .side-panel {
-                padding: 17px;
+            .download-section {
+                width: 92%;
+                margin-bottom: 60px;
             }
 
-            .platform-card {
-                gap: 13px;
+            .download-panel {
+                padding: 18px;
+            }
+
+            .panel-title h2 {
+                font-size: 25px;
+            }
+
+            .platform-selector {
+                gap: 8px;
+            }
+
+            .platform-option {
+                min-height: 85px;
+                flex-direction: column;
+                gap: 5px;
+                padding: 10px 5px;
+            }
+
+            .platform-option svg {
+                width: 29px;
+                height: 29px;
+                flex-basis: 29px;
+            }
+
+            .platform-option span {
+                text-align: center;
+                font-size: 17px;
+            }
+
+            .platform-option small {
+                font-size: 11px;
+            }
+
+            .selected-platform {
                 padding: 13px;
+                gap: 12px;
             }
 
-            .platform-icon {
-                flex-basis: 58px;
-                width: 58px;
-                height: 58px;
-            }
-
-            .platform-icon svg {
-                width: 34px;
-                height: 34px;
-            }
-
-            .platform-info h3 {
+            .selected-info h3 {
                 font-size: 22px;
             }
 
-            .platform-switch {
-                flex-direction: column;
+            .statistics {
+                gap: 9px;
             }
 
-            .stats-grid {
-                gap: 8px;
+            .stat-card {
+                padding: 12px 8px;
+            }
+
+            .stat-card strong {
+                font-size: 27px;
             }
 
             .footer {
@@ -614,22 +613,58 @@
         </p>
     </section>
 
-    <section class="download-layout">
+    <section class="download-section">
 
-        <article class="download-panel">
+        <div class="download-panel">
 
-            <div class="panel-heading">
+            <div class="panel-title">
                 <h2>Your download</h2>
-                <span class="platform-label">Selected platform</span>
+                <p>Select your operating system below.</p>
             </div>
 
-            <div class="platform-card">
+            <div class="platform-selector" role="group" aria-label="Choose operating system">
 
-                <div class="platform-icon" id="platformIcon" aria-hidden="true">
-                    <!-- Windows icon is inserted by JavaScript -->
+                <button class="platform-option active"
+                        id="windowsOption"
+                        type="button"
+                        aria-pressed="true">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M1 3.5 10.5 2v9H1V3.5Zm10.5-1.7L23 0v11H11.5V1.8ZM1 12h9.5v9L1 19.5V12Zm10.5 0H23v12l-11.5-1.8V12Z"/>
+                    </svg>
+
+                    <span>
+                        Windows
+                        <small>PC computers</small>
+                    </span>
+                </button>
+
+                <button class="platform-option"
+                        id="macOption"
+                        type="button"
+                        aria-pressed="false">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M16.6 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.2-2.8.9-3.6.9-.7 0-1.9-.9-3.1-.9-1.6 0-3.1.9-3.9 2.3-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.7-.7 3.2-.7s1.9.7 3.2.7c1.3 0 2.1-1.1 2.9-2.2.9-1.3 1.2-2.5 1.2-2.6-.1 0-2.4-.9-2.4-4.3ZM14.2 6.4c.7-.8 1.2-1.9 1.1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1.1.1 2.1-.5 2.8-1.3Z"/>
+                    </svg>
+
+                    <span>
+                        macOS
+                        <small>Apple computers</small>
+                    </span>
+                </button>
+
+            </div>
+
+            <div class="selected-platform">
+
+                <div class="selected-icon" id="selectedIcon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M1 3.5 10.5 2v9H1V3.5Zm10.5-1.7L23 0v11H11.5V1.8ZM1 12h9.5v9L1 19.5V12Zm10.5 0H23v12l-11.5-1.8V12Z"/>
+                    </svg>
                 </div>
 
-                <div class="platform-info">
+                <div class="selected-info">
                     <h3 id="platformName">Windows</h3>
                     <p id="platformDescription">For Windows computers</p>
                 </div>
@@ -660,56 +695,25 @@
                 Downloads are not available yet. Check back for future updates.
             </p>
 
-            <div class="platform-switch">
-                <a class="pixel-button" id="windowsLink" href="download.html?platform=windows">
-                    Windows
-                </a>
+        </div>
 
-                <a class="pixel-button secondary" id="macLink" href="download.html?platform=mac">
-                    macOS
-                </a>
+        <div class="statistics">
+
+            <div class="stat-card">
+                <strong id="pageViews">—</strong>
+                <span>Page views</span>
             </div>
 
-        </article>
-
-        <aside class="side-panel">
-
-            <h2>Community statistics</h2>
-
-            <div class="stats-grid">
-
-                <div class="stat-card">
-                    <strong id="pageViews">—</strong>
-                    <span>Page views</span>
-                </div>
-
-                <div class="stat-card">
-                    <strong id="downloadClicks">—</strong>
-                    <span>Download clicks</span>
-                </div>
-
+            <div class="stat-card">
+                <strong id="downloadClicks">—</strong>
+                <span>Download clicks</span>
             </div>
 
-            <p class="stats-status" id="statsStatus" aria-live="polite">
-                Loading statistics...
-            </p>
+        </div>
 
-            <div class="side-divider"></div>
-
-            <h2>About the download</h2>
-
-            <p>
-                The download portal will provide access to Infinite Sandbox
-                builds for supported platforms.
-            </p>
-
-            <ul>
-                <li>Windows build coming soon</li>
-                <li>macOS build coming soon</li>
-                <li>Updates will appear here</li>
-            </ul>
-
-        </aside>
+        <p class="stats-status" id="statsStatus" aria-live="polite">
+            Loading statistics...
+        </p>
 
     </section>
 
@@ -737,20 +741,15 @@
     document.getElementById("year").textContent =
         new Date().getFullYear();
 
+
     /* PLATFORM SELECTION */
 
-    const params = new URLSearchParams(window.location.search);
-
-    const requestedPlatform = params.get("platform")?.toLowerCase();
-
-    const platform = requestedPlatform === "mac" ? "mac" : "windows";
+    const windowsOption = document.getElementById("windowsOption");
+    const macOption = document.getElementById("macOption");
 
     const platformName = document.getElementById("platformName");
     const platformDescription = document.getElementById("platformDescription");
-    const platformIcon = document.getElementById("platformIcon");
-
-    const windowsLink = document.getElementById("windowsLink");
-    const macLink = document.getElementById("macLink");
+    const selectedIcon = document.getElementById("selectedIcon");
 
     const windowsSVG = `
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -764,25 +763,64 @@
         </svg>
     `;
 
-    if (platform === "mac") {
-        platformName.textContent = "macOS";
-        platformDescription.textContent = "For Apple Mac computers";
-        platformIcon.innerHTML = macSVG;
+    let currentPlatform =
+        new URLSearchParams(window.location.search).get("platform")?.toLowerCase() === "mac"
+            ? "mac"
+            : "windows";
 
-        macLink.classList.remove("secondary");
-        windowsLink.classList.add("secondary");
+    function setPlatform(platform, updateURL = true) {
+        currentPlatform = platform;
 
-        document.title = "Download for macOS | Infinite Sandbox";
-    } else {
-        platformName.textContent = "Windows";
-        platformDescription.textContent = "For Windows computers";
-        platformIcon.innerHTML = windowsSVG;
+        const isMac = platform === "mac";
 
-        windowsLink.classList.remove("secondary");
-        macLink.classList.add("secondary");
+        platformName.textContent = isMac ? "macOS" : "Windows";
 
-        document.title = "Download for Windows | Infinite Sandbox";
+        platformDescription.textContent = isMac
+            ? "For Apple Mac computers"
+            : "For Windows computers";
+
+        selectedIcon.innerHTML = isMac ? macSVG : windowsSVG;
+
+        windowsOption.classList.toggle("active", !isMac);
+        macOption.classList.toggle("active", isMac);
+
+        windowsOption.setAttribute("aria-pressed", String(!isMac));
+        macOption.setAttribute("aria-pressed", String(isMac));
+
+        document.title = isMac
+            ? "Download for macOS | Infinite Sandbox"
+            : "Download for Windows | Infinite Sandbox";
+
+        if (updateURL) {
+            const url = new URL(window.location.href);
+
+            url.searchParams.set("platform", platform);
+
+            /*
+             * Updates the address bar without navigating or reloading.
+             * This preserves the current scroll position.
+             */
+            history.replaceState(
+                { platform },
+                "",
+                url.pathname + url.search + url.hash
+            );
+        }
+
+        /*
+         * Hide the previous notice when changing platform.
+         */
+        downloadNotice.hidden = true;
     }
+
+    windowsOption.addEventListener("click", () => {
+        setPlatform("windows");
+    });
+
+    macOption.addEventListener("click", () => {
+        setPlatform("mac");
+    });
+
 
     /* SUPABASE STATISTICS */
 
@@ -818,10 +856,6 @@
     }
 
     function updateStats(data) {
-        /*
-         * Supports either a single object or an array containing
-         * one object, depending on the Supabase RPC response.
-         */
         const stats = Array.isArray(data) ? data[0] : data;
 
         if (!stats || typeof stats !== "object") {
@@ -838,12 +872,12 @@
             stats.total_download_clicks ??
             stats.clicks;
 
-        if (views !== undefined) {
+        if (views !== undefined && views !== null) {
             pageViewsElement.textContent =
                 Number(views).toLocaleString();
         }
 
-        if (clicks !== undefined) {
+        if (clicks !== undefined && clicks !== null) {
             downloadClicksElement.textContent =
                 Number(clicks).toLocaleString();
         }
@@ -854,8 +888,8 @@
 
         try {
             /*
-             * Record this page view and use the returned statistics.
-             * This avoids separately recording and fetching twice.
+             * This runs once when the page loads.
+             * Changing operating systems does not call it again.
              */
             const data = await callRPC("track_download_page_view");
 
@@ -864,9 +898,6 @@
         } catch (error) {
             console.error("Page-view tracking failed:", error);
 
-            /*
-             * If tracking fails, try retrieving existing statistics.
-             */
             try {
                 const data = await callRPC("get_download_stats");
 
@@ -875,10 +906,12 @@
                     "Statistics loaded; page view could not be recorded.";
             } catch (fallbackError) {
                 console.error("Statistics loading failed:", fallbackError);
-                statsStatus.textContent = "Statistics are currently unavailable.";
+                statsStatus.textContent =
+                    "Statistics are currently unavailable.";
             }
         }
     }
+
 
     /* DOWNLOAD BUTTON */
 
@@ -901,8 +934,10 @@
         }
     });
 
-    /* START */
 
+    /* INITIALISE */
+
+    setPlatform(currentPlatform, false);
     loadStats();
 </script>
 
