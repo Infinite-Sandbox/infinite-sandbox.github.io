@@ -112,7 +112,6 @@
         }
 
         
-/* SLICED BUTTON TEXTURE */
 
 .btn {
     display: inline-flex;
@@ -122,24 +121,23 @@
     min-height: 46px;
     padding: 10px 22px;
 
-    /* 9-sliced button texture */
     border: 11px solid transparent;
-    border-image-source: url("UIButton.PNG");
-    border-image-slice: 11 fill;
+
+    /* Unity-style 9-slicing */
+    border-image-source: url("https://raw.githubusercontent.com/Infinite-Sandbox/infinite-sandbox.github.io/main/UIButton.PNG");
+    border-image-slice: 1 fill;
     border-image-width: 11px;
     border-image-repeat: stretch;
 
     background: transparent;
-    background-color: transparent;
-
-    color: #FFFFFF !important;
+    color: white !important;
     font-family: inherit;
     font-size: 16px;
     font-weight: 700;
     text-decoration: none;
     text-align: center;
-
     cursor: pointer;
+
     transition: transform 0.15s, filter 0.15s;
 }
 
@@ -152,8 +150,6 @@
     transform: translateY(2px);
 }
 
-/* DARK BUTTON VARIANT */
-
 .btn.dark {
     filter: brightness(0.65);
 }
@@ -161,6 +157,7 @@
 .btn.dark:hover {
     filter: brightness(0.8);
 }
+
 
 
         /* HERO */
