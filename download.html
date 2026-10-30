@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#e8edf5">
+    <title>Download Infinite Sandbox</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --blue: #3478f6;
+            --blue-dark: #245fd0;
+            --background: #e1e5eb;
+            --card: #ffffff;
+            --text: #202938;
+            --muted: #738096;
+            --border: #e1e7f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            position: relative;
+            isolation: isolate;
+            min-height: 100vh;
+            margin: 0;
+            padding: 32px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: var(--text);
+            background: var(--background);
+            font-family: "Pixelify Sans", system-ui, sans-serif;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(to right, #c9d0dc 1px, transparent 1px),
+                linear-gradient(to bottom, #c9d0dc 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .orb {
+            position: fixed;
+            z-index: -1;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .orb-blue {
+            top: -100px;
+            left: -80px;
+            background: #6c9fff;
+        }
+
+        .orb-green {
+            right: -100px;
+            bottom: -100px;
+            background: #8ddfc6;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .top-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            margin-bottom: 20px;
+            color: #58677d;
+            font-family: system-ui, sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .top-label::before,
+        .top-label::after {
+            content: "";
+            width: 24px;
+            height: 2px;
+            background: var(--blue);
+            opacity: 0.7;
+        }
+
+        .download-card {
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            border-radius: 24px;
+            background: var(--card);
+            box-shadow:
+                0 25px 70px rgba(41, 57, 82, 0.12),
+                0 3px 10px rgba(41, 57, 82, 0.04);
+        }
+
+        .card-strip {
+            height: 6px;
+            background: linear-gradient(90deg, #3478f6, #65a2ff, #6ed8ba);
+        }
+
+        .card-content {
+            padding: 35px 30px 28px;
+            text-align: center;
+        }
+
+        .logo {
+            display: block;
+            width: min(100%, 290px);
+            max-height: 115px;
+            object-fit: contain;
+            margin: 0 auto 22px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border: 1px solid #d9e7ff;
+            border-radius: 100px;
+            color: #2866d6;
+            background: #f0f6ff;
+            font-family: system-ui, sans-serif;
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #3478f6;
+            box-shadow: 0 0 0 4px #dce9ff;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                box-shadow: 0 0 0 7px rgba(52, 120, 246, 0.08);
+            }
+        }
+
+        h1 {
+            margin: 20px 0 10px;
+            font-size: clamp(28px, 6vw, 38px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.8px;
+        }
+
+        .subtitle {
+            max-width: 350px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-family: system-ui, sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .platform-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 28px;
+            padding: 17px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: #f8faff;
+            text-align: left;
+        }
+
+        .platform-icon {
+            display: grid;
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            place-items: center;
+            border: 1px solid #e2eaf8;
+            border-radius: 13px;
+            background: white;
+            color: var(--blue);
+        }
+
+        .platform-icon svg {
+            width: 29px;
+            height: 29px;
+        }
+
+        .platform-name {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .platform-description {
+            margin-top: 4px;
+            color: var(--muted);
+            font-family: system-ui, sans-serif;
+            font-size: 12px;
+        }
+
+        .progress-section {
+            margin-top: 24px;
+            text-align: left;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-family: system-ui, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .progress-labels span:last-child {
+            color: var(--blue);
+        }
+
+        .progress-track {
+            height: 7px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #eaf0fa;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #3478f6, #70a7ff);
+            transform-origin: left;
+            animation: loading 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes loading {
+            from { transform: scaleX(0.22); }
+            to { transform: scaleX(0.94); }
+        }
+
+        .download-button {
+            display: flex;
+            width: 100%;
+            min-height: 54px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 13px;
+            color: white;
+            background: var(--blue);
+            box-shadow: 0 7px 16px rgba(52, 120, 246, 0.22);
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            background: var(--blue-dark);
+            box-shadow: 0 10px 22px rgba(52, 120, 246, 0.3);
+        }
+
+        .download-button:active {
+            transform: translateY(0);
+        }
+
+        .download-button svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        .notice {
+            display: none;
+            margin-top: 15px;
+            padding: 13px 15px;
+            border: 1px solid #f1dfb5;
+            border-radius: 12px;
+            color: #76581b;
+            background: #fff9e9;
+            font-family: system-ui, sans-serif;
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .notice.visible {
+            display: block;
+        }
+
+        .card-footer {
+            padding: 17px 25px;
+            border-top: 1px solid #edf0f5;
+            color: #929daf;
+            background: #fbfcfe;
+            font-family: system-ui, sans-serif;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .stat-card {
+            padding: 17px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: 0 5px 18px rgba(41, 57, 82, 0.04);
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            color: var(--blue);
+            font-size: 27px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            display: block;
+            margin-top: 5px;
+            color: #738096;
+            font-family: system-ui, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .stats-status {
+            margin-top: 9px;
+            color: #7d899b;
+            font-family: system-ui, sans-serif;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 22px;
+            color: #53647c;
+            font-family: system-ui, sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--blue);
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 22px 12px;
+            }
+
+            .card-content {
+                padding: 28px 19px 23px;
+            }
+
+            .platform-card {
+                padding: 13px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-green"></div>
+
+    <main class="page">
+        <div class="top-label">Infinite Sandbox · Downloads</div>
+
+        <section class="download-card">
+            <div class="card-strip"></div>
+
+            <div class="card-content">
+                <img
+                    class="logo"
+                    src="TitleLogo.png"
+                    alt="Infinite Sandbox"
+                >
+
+                <div class="status">
+                    <span class="status-dot"></span>
+                    <span>Preparing your download</span>
+                </div>
+
+                <h1>Your download<br>will start shortly.</h1>
+
+                <p class="subtitle">
+                    Thanks for checking out Infinite Sandbox.
+                    Your selected platform is shown below.
+                </p>
+
+                <div class="platform-card">
+                    <div class="platform-icon" id="platformIcon">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M3 4.8 10.7 3.7v7.6H3V4.8Zm8.7-1.25L21 2.2v9.1h-9.3V3.55ZM3 12.6h7.7v7.7L3 19.2v-6.6Zm8.7 0H21v9.2l-9.3-1.35V12.6Z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="platform-name" id="platformName">Windows</div>
+                        <div class="platform-description" id="platformDescription">
+                            Desktop version · Coming soon
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-labels">
+                        <span id="progressText">Getting things ready</span>
+                        <span id="progressPercent">Please wait</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+
+                <button class="download-button" id="downloadButton" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         aria-hidden="true">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <path d="m7 10 5 5 5-5"/>
+                        <path d="M12 15V3"/>
+                    </svg>
+                    <span>Click here to download</span>
+                </button>
+
+                <div class="notice" id="downloadNotice" role="status" aria-live="polite">
+                    Downloads aren't available yet. Infinite Sandbox is still being prepared
+                    for release. Check back soon!
+                </div>
+            </div>
+
+            <div class="card-footer">
+                INFINITE SANDBOX · DOWNLOAD PORTAL
+            </div>
+        </section>
+
+        <section class="stats" aria-label="Download page statistics">
+            <div class="stat-card">
+                <span class="stat-number" id="pageViews">—</span>
+                <span class="stat-label">Page views</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="downloadClicks">—</span>
+                <span class="stat-label">Download clicks</span>
+            </div>
+        </section>
+
+        <div class="stats-status" id="statsStatus" aria-live="polite">
+            Connecting to statistics…
+        </div>
+
+        <div style="text-align:center">
+            <a class="back-link" href="index.html">← Back to Infinite Sandbox</a>
+        </div>
+    </main>
+
+    <script>
+        // Supabase project connection
+        const SUPABASE_URL = "https://ctbshpsasueuopudgqyr.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_0mgxXikGBYokMqiq-aX5-g_8ah1o9n_";
+
+        const pageViewsElement = document.getElementById("pageViews");
+        const downloadClicksElement = document.getElementById("downloadClicks");
+        const statsStatusElement = document.getElementById("statsStatus");
+
+        const numberFormat = new Intl.NumberFormat();
+
+        function displayStats(stats) {
+            if (!stats || typeof stats.page_views === "undefined") {
+                throw new Error("Unexpected statistics response.");
+            }
+
+            pageViewsElement.textContent =
+                numberFormat.format(Number(stats.page_views));
+
+            downloadClicksElement.textContent =
+                numberFormat.format(Number(stats.download_clicks));
+        }
+
+        async function callCounter(functionName) {
+            const response = await fetch(
+                `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": SUPABASE_KEY,
+                        "Authorization": `Bearer ${SUPABASE_KEY}`
+                    },
+                    body: "{}"
+                }
+            );
+
+            if (!response.ok) {
+                const detail = await response.text();
+                throw new Error(
+                    `Supabase ${response.status}: ${detail.slice(0, 250)}`
+                );
+            }
+
+            return response.json();
+        }
+
+        async function loadStats() {
+            try {
+                const stats = await callCounter("get_download_stats");
+                displayStats(stats);
+                statsStatusElement.textContent = "Live shared statistics";
+            } catch (error) {
+                console.error("Could not load download statistics:", error);
+                statsStatusElement.textContent =
+                    "Statistics unavailable — check your Supabase setup.";
+            }
+        }
+
+        async function trackPageView() {
+            try {
+                const stats = await callCounter("track_download_page_view");
+                displayStats(stats);
+                statsStatusElement.textContent = "Live shared statistics";
+            } catch (error) {
+                console.error("Could not record page view:", error);
+                statsStatusElement.textContent =
+                    "Statistics unavailable — check your Supabase setup.";
+            }
+        }
+
+        async function trackDownloadClick() {
+            try {
+                const stats = await callCounter("track_download_click");
+                displayStats(stats);
+            } catch (error) {
+                console.error("Could not record download click:", error);
+            }
+        }
+
+        // Platform is selected by index.html using ?platform=windows or ?platform=mac
+        const params = new URLSearchParams(window.location.search);
+        const platform = params.get("platform");
+        const platformName = document.getElementById("platformName");
+        const platformDescription = document.getElementById("platformDescription");
+        const platformIcon = document.getElementById("platformIcon");
+
+        const windowsIcon = `
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3 4.8 10.7 3.7v7.6H3V4.8Zm8.7-1.25L21 2.2v9.1h-9.3V3.55ZM3 12.6h7.7v7.7L3 19.2v-6.6Zm8.7 0H21v9.2l-9.3-1.35V12.6Z"/>
+            </svg>`;
+
+        const macIcon = `
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.05 12.54c.02 2.14 1.88 2.85 1.9 2.86-.02.05-.3 1.04-.98 2.06-.59.88-1.2 1.75-2.16 1.77-.94.02-1.25-.57-2.33-.57s-1.42.55-2.31.59c-.93.04-1.64-.95-2.23-1.83-1.21-1.78-2.14-5.03-.9-7.23.62-1.09 1.72-1.78 2.91-1.8.91-.02 1.76.62 2.33.62.56 0 1.61-.77 2.71-.66.46.02 1.76.19 2.6 1.42-.07.04-1.55.91-1.54 2.77ZM15.3 6.56c.49-.6.82-1.44.73-2.28-.71.03-1.57.48-2.08 1.08-.46.53-.87 1.38-.76 2.19.79.06 1.61-.4 2.11-.99Z"/>
+            </svg>`;
+
+        if (platform === "mac") {
+            platformName.textContent = "macOS";
+            platformDescription.textContent = "Mac version · Coming soon";
+            platformIcon.innerHTML = macIcon;
+        } else {
+            platformName.textContent = "Windows";
+            platformDescription.textContent = "Windows version · Coming soon";
+            platformIcon.innerHTML = windowsIcon;
+        }
+
+        // Track one view for each page load/refresh.
+        trackPageView();
+
+        // Load the current shared totals as well.
+        loadStats();
+
+        // The real download will be connected later.
+        document.getElementById("downloadButton").addEventListener("click", async () => {
+            const button = document.getElementById("downloadButton");
+            const notice = document.getElementById("downloadNotice");
+
+            button.disabled = true;
+            button.style.opacity = "0.8";
+            button.querySelector("span").textContent = "Checking download…";
+
+            await trackDownloadClick();
+
+            notice.classList.add("visible");
+            document.getElementById("progressText").textContent =
+                "Download not available yet";
+            document.getElementById("progressPercent").textContent =
+                "Coming soon";
+
+            button.querySelector("span").textContent = "Download coming soon";
+            button.disabled = false;
+            button.style.opacity = "1";
+        });
+    </script>
+</body>
+</html>
