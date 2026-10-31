@@ -62,56 +62,56 @@
             max-width: 100%;
         }
 
-        /* NINE-SLICE BUTTONS */
+       /* NINE-SLICE BUTTONS */
 
-        .pixel-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-height: 48px;
-            padding: 10px 22px;
+.pixel-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 48px;
+    padding: 10px 22px;
 
-            border: 12px solid transparent;
-            border-image-source: var(--button-image);
-            border-image-slice: 1 fill;
-            border-image-width: 12px;
-            border-image-repeat: stretch;
+    border: 6px solid transparent;
+    border-image-source: var(--button-image);
+    border-image-slice: 1 fill;
+    border-image-width: 6px;
+    border-image-repeat: stretch;
 
-            background: transparent;
-            color: white;
-            font-family: inherit;
-            font-size: 17px;
-            font-weight: 700;
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-            transition: transform .14s, filter .14s;
-        }
+    background: transparent;
+    color: white;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .14s, filter .14s;
+}
 
-        .pixel-button:hover {
-            filter: brightness(1.18);
-            transform: translateY(-2px);
-        }
+.pixel-button:hover {
+    filter: brightness(1.18);
+    transform: translateY(-2px);
+}
 
-        .pixel-button:active {
-            transform: translateY(1px);
-            filter: brightness(.95);
-        }
+.pixel-button:active {
+    transform: translateY(1px);
+    filter: brightness(.95);
+}
 
-        .pixel-button.secondary {
-            filter: brightness(.68);
-        }
+.pixel-button.secondary {
+    filter: brightness(.68);
+}
 
-        .pixel-button.secondary:hover {
-            filter: brightness(.85);
-        }
+.pixel-button.secondary:hover {
+    filter: brightness(.85);
+}
 
-        .pixel-button.small {
-            min-height: 39px;
-            padding: 6px 15px;
-            font-size: 15px;
-        }
+.pixel-button.small {
+    min-height: 39px;
+    padding: 6px 15px;
+    font-size: 15px;
+}
 
         /* HEADER */
 
