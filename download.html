@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,20 +93,6 @@
 
         .pixel-button:active {
             transform: translateY(1px);
-        }
-
-        .pixel-button.secondary {
-            filter: brightness(.68);
-        }
-
-        .pixel-button.secondary:hover {
-            filter: brightness(.85);
-        }
-
-        .pixel-button:disabled {
-            opacity: .7;
-            cursor: not-allowed;
-            transform: none;
         }
 
         /* HEADER */
@@ -228,63 +214,6 @@
             font-size: 16px;
         }
 
-        /* PLATFORM SELECTOR */
-
-        .platform-selector {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 27px;
-        }
-
-        .platform-option {
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 13px;
-            padding: 15px;
-            border: 2px solid rgba(48,52,59,.25);
-            background: rgba(255,255,255,.2);
-            color: var(--dark);
-            font-family: inherit;
-            cursor: pointer;
-            transition: background .15s, border-color .15s, transform .15s;
-        }
-
-        .platform-option:hover {
-            background: rgba(255,255,255,.4);
-            transform: translateY(-2px);
-        }
-
-        .platform-option.active {
-            background: #343a44;
-            border-color: #343a44;
-            color: white;
-            box-shadow: 0 4px 0 rgba(48,52,59,.2);
-        }
-
-        .platform-option svg {
-            width: 38px;
-            height: 38px;
-            flex: 0 0 38px;
-            fill: currentColor;
-        }
-
-        .platform-option span {
-            display: block;
-            text-align: left;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .platform-option small {
-            display: block;
-            font-size: 13px;
-            font-weight: 400;
-            opacity: .75;
-        }
-
         /* SELECTED PLATFORM */
 
         .selected-platform {
@@ -344,8 +273,8 @@
             width: 12px;
             height: 12px;
             flex: 0 0 12px;
-            background: #e2a52b;
-            border: 2px solid #9a6a16;
+            background: #42bd72;
+            border: 2px solid #25864b;
         }
 
         .availability strong {
@@ -378,7 +307,7 @@
             margin-top: 15px;
             padding: 13px 15px;
             background: rgba(255,255,255,.3);
-            border-left: 4px solid #d39a28;
+            border-left: 4px solid #42bd72;
             color: #454b55;
             font-size: 15px;
             text-align: center;
@@ -515,32 +444,6 @@
                 font-size: 25px;
             }
 
-            .platform-selector {
-                gap: 8px;
-            }
-
-            .platform-option {
-                min-height: 85px;
-                flex-direction: column;
-                gap: 5px;
-                padding: 10px 5px;
-            }
-
-            .platform-option svg {
-                width: 29px;
-                height: 29px;
-                flex-basis: 29px;
-            }
-
-            .platform-option span {
-                text-align: center;
-                font-size: 17px;
-            }
-
-            .platform-option small {
-                font-size: 11px;
-            }
-
             .selected-platform {
                 padding: 13px;
                 gap: 12px;
@@ -608,7 +511,7 @@
         <h1>Get Infinite Sandbox</h1>
 
         <p>
-            Choose your platform and get ready to create,
+            Download the launcher and get ready to create,
             experiment, and explore.
         </p>
     </section>
@@ -619,54 +522,20 @@
 
             <div class="panel-title">
                 <h2>Your download</h2>
-                <p>Select your operating system below.</p>
-            </div>
-
-            <div class="platform-selector" role="group" aria-label="Choose operating system">
-
-                <button class="platform-option active"
-                        id="windowsOption"
-                        type="button"
-                        aria-pressed="true">
-
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M1 3.5 10.5 2v9H1V3.5Zm10.5-1.7L23 0v11H11.5V1.8ZM1 12h9.5v9L1 19.5V12Zm10.5 0H23v12l-11.5-1.8V12Z"/>
-                    </svg>
-
-                    <span>
-                        Windows
-                        <small>PC computers</small>
-                    </span>
-                </button>
-
-                <button class="platform-option"
-                        id="macOption"
-                        type="button"
-                        aria-pressed="false">
-
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M16.6 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.2-2.8.9-3.6.9-.7 0-1.9-.9-3.1-.9-1.6 0-3.1.9-3.9 2.3-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.7-.7 3.2-.7s1.9.7 3.2.7c1.3 0 2.1-1.1 2.9-2.2.9-1.3 1.2-2.5 1.2-2.6-.1 0-2.4-.9-2.4-4.3ZM14.2 6.4c.7-.8 1.2-1.9 1.1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1.1.1 2.1-.5 2.8-1.3Z"/>
-                    </svg>
-
-                    <span>
-                        macOS
-                        <small>Apple computers</small>
-                    </span>
-                </button>
-
+                <p>Official Windows launcher.</p>
             </div>
 
             <div class="selected-platform">
 
-                <div class="selected-icon" id="selectedIcon" aria-hidden="true">
+                <div class="selected-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24">
                         <path d="M1 3.5 10.5 2v9H1V3.5Zm10.5-1.7L23 0v11H11.5V1.8ZM1 12h9.5v9L1 19.5V12Zm10.5 0H23v12l-11.5-1.8V12Z"/>
                     </svg>
                 </div>
 
                 <div class="selected-info">
-                    <h3 id="platformName">Windows</h3>
-                    <p id="platformDescription">For Windows computers</p>
+                    <h3>Windows</h3>
+                    <p>Infinite Sandbox Launcher 1.0.0</p>
                 </div>
 
             </div>
@@ -675,24 +544,29 @@
                 <span class="status-indicator"></span>
 
                 <div>
-                    <strong>Coming soon</strong>
-                    <span>Downloads are not available yet.</span>
+                    <strong>Available now</strong>
+                    <span>Launcher version 1.0.0 is ready to download.</span>
                 </div>
             </div>
 
             <p class="download-description">
-                Infinite Sandbox is currently in development.
-                The download will become available here when a build is ready.
+                Download the official Infinite Sandbox Launcher for Windows.
+                The launcher allows you to access and install Infinite Sandbox.
             </p>
 
             <div class="download-action">
-                <button class="pixel-button" id="downloadButton" type="button">
-                    Download coming soon
-                </button>
+                <a
+                    class="pixel-button"
+                    id="downloadButton"
+                    href="https://github.com/Infinite-Sandbox/launchers/releases/download/1.0.0/Infinite.Sandbox.Launcher.exe"
+                    download="Infinite.Sandbox.Launcher.exe"
+                >
+                    Download for Windows
+                </a>
             </div>
 
             <p class="download-notice" id="downloadNotice" role="status" hidden>
-                Downloads are not available yet. Check back for future updates.
+                Your download should begin shortly.
             </p>
 
         </div>
@@ -736,210 +610,147 @@
 </footer>
 
 <script>
-    /* GENERAL */
 
-    document.getElementById("year").textContent =
-        new Date().getFullYear();
+/* GENERAL */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
 
 
-    /* PLATFORM SELECTION */
+/* SUPABASE STATISTICS */
 
-    const windowsOption = document.getElementById("windowsOption");
-    const macOption = document.getElementById("macOption");
+const SUPABASE_URL =
+    "https://ctbshpsasueuopudgqyr.supabase.co";
 
-    const platformName = document.getElementById("platformName");
-    const platformDescription = document.getElementById("platformDescription");
-    const selectedIcon = document.getElementById("selectedIcon");
+const SUPABASE_KEY =
+    "sb_publishable_0mgxXikGBYokMqiq-aX5-g_8ah1o9n_";
 
-    const windowsSVG = `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M1 3.5 10.5 2v9H1V3.5Zm10.5-1.7L23 0v11H11.5V1.8ZM1 12h9.5v9L1 19.5V12Zm10.5 0H23v12l-11.5-1.8V12Z"/>
-        </svg>
-    `;
+const pageViewsElement = document.getElementById("pageViews");
+const downloadClicksElement = document.getElementById("downloadClicks");
+const statsStatus = document.getElementById("statsStatus");
 
-    const macSVG = `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M16.6 12.8c0-2.1 1.7-3.1 1.8-3.2-1-1.5-2.6-1.7-3.2-1.7-1.4-.2-2.8.9-3.6.9-.7 0-1.9-.9-3.1-.9-1.6 0-3.1.9-3.9 2.3-1.7 2.9-.4 7.2 1.2 9.5.8 1.1 1.7 2.3 2.9 2.2 1.2 0 1.7-.7 3.2-.7s1.9.7 3.2.7c1.3 0 2.1-1.1 2.9-2.2.9-1.3 1.2-2.5 1.2-2.6-.1 0-2.4-.9-2.4-4.3ZM14.2 6.4c.7-.8 1.2-1.9 1.1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1.1 2.9 1.1.1 2.1-.5 2.8-1.3Z"/>
-        </svg>
-    `;
+async function callRPC(functionName) {
 
-    let currentPlatform =
-        new URLSearchParams(window.location.search).get("platform")?.toLowerCase() === "mac"
-            ? "mac"
-            : "windows";
-
-    function setPlatform(platform, updateURL = true) {
-        currentPlatform = platform;
-
-        const isMac = platform === "mac";
-
-        platformName.textContent = isMac ? "macOS" : "Windows";
-
-        platformDescription.textContent = isMac
-            ? "For Apple Mac computers"
-            : "For Windows computers";
-
-        selectedIcon.innerHTML = isMac ? macSVG : windowsSVG;
-
-        windowsOption.classList.toggle("active", !isMac);
-        macOption.classList.toggle("active", isMac);
-
-        windowsOption.setAttribute("aria-pressed", String(!isMac));
-        macOption.setAttribute("aria-pressed", String(isMac));
-
-        document.title = isMac
-            ? "Download for macOS | Infinite Sandbox"
-            : "Download for Windows | Infinite Sandbox";
-
-        if (updateURL) {
-            const url = new URL(window.location.href);
-
-            url.searchParams.set("platform", platform);
-
-            /*
-             * Updates the address bar without navigating or reloading.
-             * This preserves the current scroll position.
-             */
-            history.replaceState(
-                { platform },
-                "",
-                url.pathname + url.search + url.hash
-            );
+    const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "apikey": SUPABASE_KEY,
+                "Authorization": `Bearer ${SUPABASE_KEY}`
+            },
+            body: JSON.stringify({})
         }
+    );
 
-        /*
-         * Hide the previous notice when changing platform.
-         */
-        downloadNotice.hidden = true;
+    if (!response.ok) {
+        throw new Error(`Statistics request failed: ${response.status}`);
     }
 
-    windowsOption.addEventListener("click", () => {
-        setPlatform("windows");
-    });
-
-    macOption.addEventListener("click", () => {
-        setPlatform("mac");
-    });
+    return await response.json();
+}
 
 
-    /* SUPABASE STATISTICS */
+function updateStats(data) {
 
-    const SUPABASE_URL =
-        "https://ctbshpsasueuopudgqyr.supabase.co";
+    const stats = Array.isArray(data) ? data[0] : data;
 
-    const SUPABASE_KEY =
-        "sb_publishable_0mgxXikGBYokMqiq-aX5-g_8ah1o9n_";
-
-    const pageViewsElement = document.getElementById("pageViews");
-    const downloadClicksElement = document.getElementById("downloadClicks");
-    const statsStatus = document.getElementById("statsStatus");
-
-    async function callRPC(functionName) {
-        const response = await fetch(
-            `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "apikey": SUPABASE_KEY,
-                    "Authorization": `Bearer ${SUPABASE_KEY}`
-                },
-                body: JSON.stringify({})
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(`Statistics request failed: ${response.status}`);
-        }
-
-        return await response.json();
+    if (!stats || typeof stats !== "object") {
+        throw new Error("Invalid statistics response");
     }
 
-    function updateStats(data) {
-        const stats = Array.isArray(data) ? data[0] : data;
+    const views =
+        stats.page_views ??
+        stats.total_page_views ??
+        stats.views;
 
-        if (!stats || typeof stats !== "object") {
-            throw new Error("Invalid statistics response");
-        }
+    const clicks =
+        stats.download_clicks ??
+        stats.total_download_clicks ??
+        stats.clicks;
 
-        const views =
-            stats.page_views ??
-            stats.total_page_views ??
-            stats.views;
-
-        const clicks =
-            stats.download_clicks ??
-            stats.total_download_clicks ??
-            stats.clicks;
-
-        if (views !== undefined && views !== null) {
-            pageViewsElement.textContent =
-                Number(views).toLocaleString();
-        }
-
-        if (clicks !== undefined && clicks !== null) {
-            downloadClicksElement.textContent =
-                Number(clicks).toLocaleString();
-        }
+    if (views !== undefined && views !== null) {
+        pageViewsElement.textContent =
+            Number(views).toLocaleString();
     }
 
-    async function loadStats() {
-        statsStatus.textContent = "Loading statistics...";
+    if (clicks !== undefined && clicks !== null) {
+        downloadClicksElement.textContent =
+            Number(clicks).toLocaleString();
+    }
+}
+
+
+async function loadStats() {
+
+    statsStatus.textContent = "Loading statistics...";
+
+    try {
+
+        const data = await callRPC("track_download_page_view");
+
+        updateStats(data);
+
+        statsStatus.textContent = "Statistics updated";
+
+    } catch (error) {
+
+        console.error("Page-view tracking failed:", error);
 
         try {
-            /*
-             * This runs once when the page loads.
-             * Changing operating systems does not call it again.
-             */
-            const data = await callRPC("track_download_page_view");
+
+            const data = await callRPC("get_download_stats");
 
             updateStats(data);
-            statsStatus.textContent = "Statistics updated";
-        } catch (error) {
-            console.error("Page-view tracking failed:", error);
 
-            try {
-                const data = await callRPC("get_download_stats");
+            statsStatus.textContent =
+                "Statistics loaded; page view could not be recorded.";
 
-                updateStats(data);
-                statsStatus.textContent =
-                    "Statistics loaded; page view could not be recorded.";
-            } catch (fallbackError) {
-                console.error("Statistics loading failed:", fallbackError);
-                statsStatus.textContent =
-                    "Statistics are currently unavailable.";
-            }
+        } catch (fallbackError) {
+
+            console.error("Statistics loading failed:", fallbackError);
+
+            statsStatus.textContent =
+                "Statistics are currently unavailable.";
         }
     }
+}
 
 
-    /* DOWNLOAD BUTTON */
+/* DOWNLOAD BUTTON */
 
-    const downloadButton = document.getElementById("downloadButton");
-    const downloadNotice = document.getElementById("downloadNotice");
+const downloadButton = document.getElementById("downloadButton");
+const downloadNotice = document.getElementById("downloadNotice");
 
-    downloadButton.addEventListener("click", async () => {
-        downloadNotice.hidden = false;
+downloadButton.addEventListener("click", async () => {
 
-        downloadButton.disabled = true;
-        downloadButton.textContent = "Download coming soon";
+    downloadNotice.hidden = false;
+    downloadNotice.textContent = "Starting your download...";
 
-        try {
-            const data = await callRPC("track_download_click");
-            updateStats(data);
-        } catch (error) {
-            console.error("Download click tracking failed:", error);
-        } finally {
-            downloadButton.disabled = false;
-        }
-    });
+    try {
+
+        const data = await callRPC("track_download_click");
+
+        updateStats(data);
+
+    } catch (error) {
+
+        console.error("Download click tracking failed:", error);
+
+    }
+
+    downloadNotice.textContent = "Your download should begin shortly.";
+
+});
 
 
-    /* INITIALISE */
+/* INITIALISE */
 
-    setPlatform(currentPlatform, false);
-    loadStats();
+loadStats();
+
 </script>
 
 </body>
 </html>
+```
